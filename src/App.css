@@ -19,6 +19,7 @@ body, .App {
   align-items: center;
   transition: box-shadow 0.2s;
 }
+
 .header-content {
   max-width: 1200px;
   margin: 0 auto;
@@ -91,6 +92,8 @@ body, .App {
   box-shadow: 0 4px 16px 0 rgba(0,0,0,0.10);
 }
 
+.company-section,
+.returns-section,
 .about-section {
   background: #fff;
   margin: 0 auto;
@@ -139,6 +142,7 @@ body, .App {
   box-shadow: 0 2px 8px 0 rgba(0,0,0,0.06);
 }
 
+.boutique-section,
 .how-section {
   background: #f6fafd;
   margin: 0 auto;
@@ -343,7 +347,7 @@ body, .App {
   transform: none;
 }
 
-.fade-in-cards > * {
+/* .fade-in-cards > * {
   background: #fff;
   border-radius: 2rem;
   box-shadow: 0 2px 16px 0 rgba(0,0,0,0.04);
@@ -352,7 +356,7 @@ body, .App {
   max-width: 1100px;
   margin-left: auto;
   margin-right: auto;
-}
+} */
 @media (max-width: 900px) {
   .fade-in-cards > * {
     padding: 2rem 1rem 2rem 1rem;
