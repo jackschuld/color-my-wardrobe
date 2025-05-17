@@ -29,16 +29,36 @@ function FadeInSection({ children, direction = 'left' }) {
 }
 
 function App() {
+  const [navOpen, setNavOpen] = useState(false);
+
+  // Close nav on route change or link click
+  const handleNavLinkClick = () => setNavOpen(false);
+
+  // Optional: Prevent scroll when nav is open (mobile)
+  useEffect(() => {
+    if (navOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => { document.body.style.overflow = ''; };
+  }, [navOpen]);
+
   return (
     <div className="App">
       <header className="site-header">
         <div className="header-content">
-          <span className="brand">Color Me Beautiful</span>
-          <nav>
-            <a href="#about">About</a>
-            <a href="#how">How It Works</a>
-            <a href="#boutiques">Seasonal Boutiques</a>
-            <a href="#contact">Contact</a>
+          <span className="brand">Peggy McAuliffe Schuld</span>
+          <div className="hamburger" onClick={() => setNavOpen(v => !v)}>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+          <nav className={navOpen ? 'open' : ''}>
+            <a href="#about" onClick={handleNavLinkClick}>About</a>
+            <a href="#how" onClick={handleNavLinkClick}>How It Works</a>
+            <a href="#boutiques" onClick={handleNavLinkClick}>Seasonal Boutiques</a>
+            <a href="#contact" onClick={handleNavLinkClick}>Contact</a>
           </nav>
         </div>
       </header>

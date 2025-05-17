@@ -1,3 +1,11 @@
+html, body {
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+*, *::before, *::after {
+  box-sizing: inherit;
+}
+
 body, .App {
   font-family: 'SF Pro Display', 'Segoe UI', 'Helvetica Neue', Arial, 'Liberation Sans', sans-serif;
   background: #fafbfc;
@@ -92,9 +100,15 @@ body, .App {
   box-shadow: 0 4px 16px 0 rgba(0,0,0,0.10);
 }
 
+.boutique-section {
+  background: #e1e0ff;
+}
+
+.about-section {
+  background: #d4f5e9;
+}
 .boutique-section,
 .about-section {
-  background: #fff;
   margin: 0 auto;
   max-width: 1100px;
   border-radius: 2rem;
@@ -141,10 +155,17 @@ body, .App {
   box-shadow: 0 2px 8px 0 rgba(0,0,0,0.06);
 }
 
+.company-section {
+  background: #ffe0fe;
+}
+
+.returns-section {
+  background: #ffeede;
+}
+
 .company-section,
 .returns-section,
 .how-section {
-  background: #f6fafd;
   margin: 0 auto;
   max-width: 1100px;
   border-radius: 2rem;
@@ -193,8 +214,7 @@ body, .App {
 .contact-section {
   background: #fff;
   border-radius: 2rem;
-  max-width: 700px;
-  margin: 4.5rem auto 0 auto;
+  margin: 5vh 10vw;
   padding: 2.5rem 2rem 2.5rem 2rem;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,0.04);
   text-align: center;
@@ -274,6 +294,7 @@ body, .App {
 .footer-nav {
   display: flex;
   gap: 2rem;
+  padding: 0 2rem;
 }
 .footer-nav a {
   color: #222;
@@ -300,10 +321,53 @@ body, .App {
   .about-section, .how-section {
     padding: 2rem 1rem 2rem 1rem;
   }
+  .fade-in-cards {
+    padding: 8vh 2vw;
+  }
+  .fade-in-cards > * {
+    padding: 2rem 1rem 2rem 1rem;
+    border-radius: 1.2rem;
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
 }
 @media (max-width: 600px) {
   .header-content {
     padding: 0 1rem;
+  }
+  .site-header nav {
+    display: none;
+    position: absolute;
+    top: 64px;
+    left: 0;
+    width: 100vw;
+    background: #fff;
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.08);
+    flex-direction: column;
+    align-items: flex-start;
+    z-index: 200;
+  }
+  .site-header nav.open {
+    display: flex;
+  }
+  .site-header .hamburger {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 36px;
+    height: 36px;
+    cursor: pointer;
+    margin-left: 1rem;
+    z-index: 201;
+  }
+  .site-header .hamburger span {
+    height: 4px;
+    width: 28px;
+    background: #222;
+    margin: 4px 0;
+    border-radius: 2px;
+    transition: all 0.3s;
+    display: block;
   }
   .hero h1 {
     font-size: 2.1rem;
@@ -315,7 +379,71 @@ body, .App {
   .contact-section {
     padding: 1.2rem 0.5rem 1.2rem 0.5rem;
     border-radius: 1rem;
-    margin-top: 2.5rem;
+    margin: 2.5rem 1rem;
+  }
+  .fade-in-cards {
+    padding: 4vh 0.5vw;
+    gap: 1.2rem;
+  }
+  .fade-in-cards > * {
+    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
+    border-radius: 1rem;
+    margin-bottom: 1.2rem;
+    max-width: 100vw;
+    box-sizing: border-box;
+  }
+  .about-inner,
+  .how-inner,
+  .company-inner,
+  .boutique-inner,
+  .returns-inner {
+    flex-direction: column !important;
+    align-items: center !important;
+    gap: 1.2rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+  .about-text,
+  .how-text {
+    text-align: center;
+  }
+  .about-img,
+  .how-visual {
+    margin-bottom: 1rem;
+  }
+  .portrait-placeholder {
+    width: 80px;
+    height: 80px;
+  }
+  .how-visual svg {
+    width: 140px !important;
+    height: 140px !important;
+  }
+  .fade-in-cards h2 {
+    font-size: 1.3rem;
+  }
+  .fade-in-cards p,
+  .fade-in-cards ol,
+  .fade-in-cards ul {
+    font-size: 1rem;
+  }
+  .cta-btn {
+    font-size: 1rem;
+    padding: 0.7rem 1.5rem;
+  }
+}
+@media (min-width: 601px) {
+  .site-header .hamburger {
+    display: none;
+  }
+  .site-header nav {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    background: none;
+    box-shadow: none;
+    align-items: center;
+    width: auto;
   }
 }
 
@@ -324,6 +452,8 @@ body, .App {
   flex-direction: column;
   gap: 2rem;
   padding: 15vh 10vw;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 
 .fade-in-section {
@@ -345,27 +475,4 @@ body, .App {
 .fade-in-section.visible.fade-in-left,
 .fade-in-section.visible.fade-in-right {
   transform: none;
-}
-
-/* .fade-in-cards > * {
-  background: #fff;
-  border-radius: 2rem;
-  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.04);
-  padding: 3rem 2rem 3rem 2rem;
-  margin-bottom: 2.5rem;
-  max-width: 1100px;
-  margin-left: auto;
-  margin-right: auto;
-} */
-@media (max-width: 900px) {
-  .fade-in-cards > * {
-    padding: 2rem 1rem 2rem 1rem;
-    border-radius: 1.2rem;
-  }
-}
-@media (max-width: 600px) {
-  .fade-in-cards > * {
-    padding: 1.2rem 0.5rem 1.2rem 0.5rem;
-    border-radius: 1rem;
-  }
 }
