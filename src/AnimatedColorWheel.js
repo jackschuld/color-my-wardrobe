@@ -1,5 +1,5 @@
 import React, { useState, useContext } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { ThemeContext } from './ThemeContext';
 
 const SWATCHES = 32;
@@ -8,7 +8,6 @@ const CENTER_Y = 240;
 const SWATCH_LENGTH = 170;
 const SWATCH_WIDTH = 50;
 const SWATCH_RADIUS = 18;
-const FAN_RADIUS = 90;
 const LABEL_WIDTH = 85;
 const LABEL_HEIGHT = 200;
 const LABEL_RADIUS = 32;
@@ -42,11 +41,6 @@ const swatchVariants = {
       }
     };
   }
-};
-
-const buttonVariants = {
-  hidden: { opacity: 0, scale: 0.7 },
-  visible: { opacity: 1, scale: 1, transition: { delay: 1.5, duration: 0.5 } }
 };
 
 // ADD_VARIANT_START

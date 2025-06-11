@@ -4,7 +4,7 @@
 import './App.css';
 import React, { useRef, useEffect, useState, useContext } from 'react';
 import AnimatedColorWheel from './AnimatedColorWheel';
-import { ThemeContext, themes } from './ThemeContext';
+import { ThemeContext } from './ThemeContext';
 import { motion } from 'framer-motion';
 
 function FadeInSection({ children, direction = 'left' }) {
@@ -128,9 +128,7 @@ function ThemeDropdown({ themeName, setTheme }) {
                 borderRadius: 8,
                 transition: 'background 0.15s',
                 boxSizing: 'border-box',
-                outline: themeName === opt.key ? '2px solid var(--accent)' : 'none',
               }}
-              aria-selected={themeName === opt.key}
             >
               {opt.icon}
             </button>

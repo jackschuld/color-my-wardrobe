@@ -1,13 +1,5 @@
 import React, { createContext, useState, useEffect } from 'react';
 
-// Helper – generate a 32-swatch palette by sweeping the hue wheel
-function generatePalette(hueShift = 0, sat = 65, light = 60) {
-  const SWATCHES = 32;
-  return Array.from({ length: SWATCHES }, (_, i) =>
-    `hsl(${(i * 360) / SWATCHES + hueShift}, ${sat}%, ${light}%)`
-  );
-}
-
 export const themes = {
   spring: {
     name: 'spring',
