@@ -1,5 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { ThemeContext } from './ThemeContext';
 
 const SWATCHES = 32;
 const CENTER_X = 240;
@@ -15,13 +16,7 @@ const LABEL_RADIUS = 32;
 // Swatches should fan out clockwise starting from straight up (12 o'clock)
 const START_ANGLE = 0; // start at 3 o'clock (pointing right)
 
-// Swatch colors (sampled from the image, can be refined)
-const SWATCH_COLORS = [
-  '#e6d2c3', '#e2c7a7', '#d6bfa2', '#bfae9b', '#a7a08c', '#7e8b7a', '#4e6b5a', '#2e4d3c',
-  '#2b4c4e', '#2e5e6b', '#3a7a8c', '#4e8ba7', '#6b9ebf', '#7ab7d6', '#a2c7e2', '#c3d6e6',
-  '#d2c3e6', '#bfa2d6', '#a78cbf', '#8c7aa7', '#7a6b8b', '#6b5a7e', '#7a4e6b', '#8c3a5a',
-  '#a72e4e', '#bf2e3a', '#d67a7a', '#e2a2a2', '#e6c3c3', '#e6d2c3', '#e2c7a7', '#d6bfa2'
-];
+// Swatch colors now come from the active seasonal theme via ThemeContext
 
 // Each swatch now pivots around the wheel axis instead of translating outward.
 const swatchVariants = {
@@ -70,8 +65,17 @@ const letterWaveVariants = {
 };
 // ADD_VARIANT_END
 
-export default function AnimatedColorWheel({ onGetStarted }) {
+export default function AnimatedColorWheel() {
+  const { theme } = useContext(ThemeContext);
   const [open, setOpen] = useState(false);
+
+  // Fallback in case something goes wrong
+  const swatchColors = (theme && theme.swatches) ? theme.swatches : [
+    '#e6d2c3','#e2c7a7','#d6bfa2','#bfae9b','#a7a08c','#7e8b7a','#4e6b5a','#2e4d3c',
+    '#2b4c4e','#2e5e6b','#3a7a8c','#4e8ba7','#6b9ebf','#7ab7d6','#a2c7e2','#c3d6e6',
+    '#d2c3e6','#bfa2d6','#a78cbf','#8c7aa7','#7a6b8b','#6b5a7e','#7a4e6b','#8c3a5a',
+    '#a72e4e','#bf2e3a','#d67a7a','#e2a2a2','#e6c3c3','#e6d2c3','#e2c7a7','#d6bfa2']
+  ;
 
   React.useEffect(() => {
     const timer = setTimeout(() => setOpen(true), 400);
@@ -83,7 +87,7 @@ export default function AnimatedColorWheel({ onGetStarted }) {
       style={{
         position: 'relative',
         width: '100vw',
-        height: '110vh',
+        height: '100vh',
         overflow: 'hidden',
         display: 'flex',
         alignItems: 'center',
@@ -124,7 +128,7 @@ export default function AnimatedColorWheel({ onGetStarted }) {
               height={SWATCH_LENGTH}
               rx={SWATCH_RADIUS}
               ry={SWATCH_RADIUS}
-              fill={SWATCH_COLORS[index % SWATCH_COLORS.length]}
+              fill={swatchColors[index % swatchColors.length]}
               x={-SWATCH_WIDTH / 2}
               y={-SWATCH_LENGTH}
               style={{
@@ -238,10 +242,15 @@ export default function AnimatedColorWheel({ onGetStarted }) {
               background: 'transparent',
               fontWeight: 600,
               cursor: 'pointer',
-              color: '#dd432d',
+              color: 'var(--accent)',
               outline: 'none',
             }}
-            onClick={onGetStarted || (() => alert('Get Started!'))}
+            onClick={() => {
+              const section = document.querySelector('.fade-in-cards');
+              if (section) {
+                section.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
           >
             {"Get Started".split("").map((char, index) => (
               <motion.span
