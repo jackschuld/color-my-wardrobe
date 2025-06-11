@@ -1,6 +1,9 @@
-html, body {
+html, body, #root {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
   overflow-x: hidden;
-  box-sizing: border-box;
 }
 *, *::before, *::after {
   box-sizing: inherit;
@@ -10,8 +13,6 @@ body, .App {
   font-family: 'SF Pro Display', 'Segoe UI', 'Helvetica Neue', Arial, 'Liberation Sans', sans-serif;
   background: #fafbfc;
   color: #222;
-  margin: 0;
-  padding: 0;
 }
 
 .site-header {
@@ -62,7 +63,7 @@ body, .App {
   align-items: center;
   justify-content: center;
   background: linear-gradient(120deg, #f6fafd 0%, #f3f0ff 100%);
-  padding-top: 80px;
+  padding-top: 60px;
   padding-bottom: 40px;
 }
 .hero-content {

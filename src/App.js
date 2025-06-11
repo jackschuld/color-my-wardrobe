@@ -3,6 +3,7 @@
  */
 import './App.css';
 import React, { useRef, useEffect, useState } from 'react';
+import AnimatedColorWheel from './AnimatedColorWheel';
 
 function FadeInSection({ children, direction = 'left' }) {
   const domRef = useRef();
@@ -63,12 +64,8 @@ function App() {
         </div>
       </header>
       <main>
-        <section className="hero">
-          <div className="hero-content">
-            <h1>Discover Your Best Colors</h1>
-            <p className="hero-sub">Personal color analysis for timeless style, confidence, and beauty.</p>
-            <a href="#contact" className="cta-btn">Book Your Consultation</a>
-          </div>
+        <section className="hero" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+          <AnimatedColorWheel />
         </section>
         <section className="fade-in-cards">
           <FadeInSection direction="right">
