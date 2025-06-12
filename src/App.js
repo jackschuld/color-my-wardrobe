@@ -6,6 +6,7 @@ import React, { useRef, useEffect, useState, useContext } from 'react';
 import AnimatedColorWheel from './AnimatedColorWheel';
 import { ThemeContext } from './ThemeContext';
 import { motion } from 'framer-motion';
+import emailjs from '@emailjs/browser';
 
 function FadeInSection({ children, direction = 'left' }) {
   const domRef = useRef();
@@ -206,9 +207,18 @@ function ThemeDropdown({ themeName, setTheme }) {
 
 function App() {
   const [navOpen, setNavOpen] = useState(false);
+  const formRef = useRef(null);
 
   // Theme context
   const { themeName, setTheme } = useContext(ThemeContext);
+
+  // Track viewport size for simple mobile breakpoint (<=600px)
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 600);
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 600);
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   // Close nav on route change or link click
   const handleNavLinkClick = () => setNavOpen(false);
@@ -222,6 +232,25 @@ function App() {
     }
     return () => { document.body.style.overflow = ''; };
   }, [navOpen]);
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+    emailjs
+      .sendForm(
+        process.env.REACT_APP_EMAILJS_SERVICE_ID,
+        process.env.REACT_APP_EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        process.env.REACT_APP_EMAILJS_PUBLIC_KEY
+      )
+      .then(() => {
+        alert('Message sent successfully!');
+        e.target.reset();
+      })
+      .catch((error) => {
+        console.error('EmailJS error:', error);
+        alert('There was an issue sending your message. Please try again later.');
+      });
+  };
 
   return (
     <div className="App">
@@ -260,6 +289,7 @@ function App() {
               <div className="company-section" id="company">
                 <div className="company-inner">
                   <h2>Why Color Me Beautiful?</h2>
+                  <img src="/casualpic.jpg" alt="Peg casual portrait" style={{ width: 300, borderRadius: '50%', float: 'right', margin: '0 0 1rem 1rem' }} />
                   <p>
                     Color Me Beautiful is <strong>THE authority on color</strong>, having helped over 26 million women discover the shades which most enhance their natural beauty. We popularized color analysis with <em>Color Me Beautiful: Discover Your Natural Beauty Through Color</em> and have refined the science of color through six additional books, including the <em>Color Me Beautiful Makeup Book</em>.
                   </p>
@@ -279,12 +309,9 @@ function App() {
                 <div className="about-inner">
                   <div className="about-text">
                     <h2>Meet Peg</h2>
+                    <img src="/inthefield.jpg" alt="Peg in the field" style={{ width: 250, objectFit: 'cover', borderRadius: 12, float: 'right', margin: '0 0 1rem 1rem' }} />
                     <p>I'm Peg, a certified Color Me Beautiful consultant. I help women discover their best colors so they can look radiant and feel confident every day. With years of experience, I guide you to your perfect palette for clothing, accessories, and more.</p>
                     <p>As part of the Color Me Beautiful family, I bring you the latest in color science and personal style, backed by a company trusted by millions. My mission is to make color easy, fun, and transformative for you.</p>
-                  </div>
-                  <div className="about-img">
-                    {/* Placeholder for a professional portrait or logo */}
-                    <div className="portrait-placeholder"></div>
                   </div>
                 </div>
               </div>
@@ -295,7 +322,6 @@ function App() {
               <div className="how-section" id="how">
                 <div className="how-inner">
                   <div className="how-visual">
-                    {/* Modern color wheel visual */}
                     <svg width="220" height="220" viewBox="0 0 220 220">
                       <circle cx="110" cy="110" r="100" fill="#fff" stroke="#e5e5e5" strokeWidth="2" />
                       {[...Array(12)].map((_, i) => (
@@ -329,7 +355,7 @@ function App() {
                 <div className="boutique-inner">
                   <h2>Shop Your Seasonal Boutique</h2>
                   <p>Check out our <strong>Seasonal Boutiques</strong> to shop within your specific seasonal palette. This ensures you look your best and eliminate costly mistakes. Our precisely coordinated cosmetics and accessories are designed to harmonize with your natural colors for a polished, confident, and natural style.</p>
-                  <a href="#contact" className="cta-btn">Find Your Boutique</a>
+                  <a href="https://colormebeautiful.com/pages/shop-by-season?srsltid=AfmBOoosELVYDCAkoOqnj8xEvjs9edUcO4Ctx2j37gX7kz1cqthTWeqO" className="cta-btn">Find Your Boutique</a>
                 </div>
               </div>
             </FadeInSection>
@@ -340,6 +366,18 @@ function App() {
                 <div className="returns-inner">
                   <h2>Hassle-Free Returns</h2>
                   <p>Shade not quite what you were needing? To further enhance your experience, you have 30 days to make up your mind. Then just click on the chat icon at the bottom of the site and enter your order number along with the name of the product you wish to return. Within 24 hours you will have a pre-paid shipping label in your email to print out and use to ship back your item.</p>
+                  <img
+                    src="/pool.jpg"
+                    alt="Peg by the pool"
+                    style={{
+                      width: isMobile ? 320 : 500,
+                      height: 300,
+                      objectFit: 'cover',
+                      borderRadius: 12,
+                      marginBottom: '1rem',
+                      float: 'right',
+                    }}
+                  />
                   <p>Our goal is to make your buying experience the absolute best it can possibly be.</p>
                 </div>
               </div>
@@ -350,10 +388,10 @@ function App() {
           <div className="contact-inner">
             <h2>Contact</h2>
             <p>Ready to discover your best colors?<br /> Get in touch for a personal consultation!</p>
-            <form className="contact-form" onSubmit={e => e.preventDefault()}>
-              <input type="text" placeholder="Your Name" required />
-              <input type="email" placeholder="Your Email" required />
-              <textarea placeholder="How can I help you?" required></textarea>
+            <form className="contact-form" ref={formRef} onSubmit={sendEmail}>
+              <input type="text" name="user_name" placeholder="Your Name" required />
+              <input type="email" name="user_email" placeholder="Your Email" required />
+              <textarea name="message" placeholder="How can I help you?" required></textarea>
               <button type="submit">Send Message</button>
             </form>
           </div>
@@ -361,14 +399,23 @@ function App() {
       </main>
       <footer className="site-footer">
         <div className="footer-inner">
-          <div className="footer-brand">Color Me Beautiful</div>
-          <nav className="footer-nav">
-            <a href="#about">About</a>
-            <a href="#how">How It Works</a>
-            <a href="#boutiques">Seasonal Boutiques</a>
-            <a href="#contact">Contact</a>
-          </nav>
-          <div className="footer-copy">&copy; {new Date().getFullYear()} Peg, Color Me Beautiful Consultant</div>
+          <img
+            src="/funny.jpg"
+            alt="Color meme"
+            style={{ maxWidth: 150, width: '100%', borderRadius: 8, marginRight: '1rem' }}
+          />
+          <div className="footer-text">
+            <div className="footer-brand">Color Me Beautiful</div>
+            <nav className="footer-nav">
+              <a href="#about">About</a>
+              <a href="#how">How It Works</a>
+              <a href="#boutiques">Seasonal Boutiques</a>
+              <a href="#contact">Contact</a>
+            </nav>
+            <div className="footer-copy">
+              &copy; {new Date().getFullYear()} Peg, Color Me Beautiful Consultant
+            </div>
+          </div>
         </div>
       </footer>
     </div>
