@@ -12,10 +12,8 @@ export const themes = {
     cssVars: {
       '--bg-body': '#fff9f3',
       '--text-color': '#ff4f4f',
-      '--accent': '#ff4f4f',
-      '--bg-card': '#ffef99',
+      '--bg-card': '#fff',
       '--bg-header': '#ffd6e8',
-      '--bg-footer': '#ffd6e8',
       '--header-text': '#c793ff'
     }
   },
@@ -29,11 +27,9 @@ export const themes = {
     ],
     cssVars: {
       '--bg-body': '#f3f9ff',
-      '--text-color': '#d3b4ff',
-      '--accent': '#d3b4ff',
-      '--bg-card': '#697a8a',
+      '--text-color': '#b9a2ff',
+      '--bg-card': '#fff',
       '--bg-header': '#a7d9a5',
-      '--bg-footer': '#a7d9a5',
       '--header-text': '#4b5d6b'
     }
   },
@@ -47,11 +43,9 @@ export const themes = {
     ],
     cssVars: {
       '--bg-body': '#fff8ef',
-      '--text-color': '#8e2b29',
-      '--accent': '#dd432d',
-      '--bg-card': '#ffe9e6',
+      '--text-color': '#c54a24',
+      '--bg-card': '#fff',
       '--bg-header': '#dd432d',
-      '--bg-footer': '#dd432d',
       '--header-text': '#fff2b3'
     }
   },
@@ -66,10 +60,8 @@ export const themes = {
     cssVars: {
       '--bg-body': '#f5f7ff',
       '--text-color': '#990000',
-      '--accent': '#990000',
-      '--bg-card': '#cfe8ff',
+      '--bg-card': '#fff',
       '--bg-header': '#d1cfe2',
-      '--bg-footer': '#d1cfe2',
       '--header-text': '#660000'
     }
   }

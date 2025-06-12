@@ -33,7 +33,7 @@ const swatchVariants = {
       y: CENTER_Y,
       rotate: angle,
       opacity: 1,
-      filter: 'drop-shadow(0px 6px 16px rgba(0,0,0,0.18))',
+      filter: 'drop-shadow(0px 4px 12px rgba(0,0,0,0.10))',
       transition: {
         delay: i * 0.03,
         duration: 0.6,
@@ -128,7 +128,8 @@ export default function AnimatedColorWheel() {
               style={{
                 transformBox: 'fill-box',
                 transformOrigin: '50% 100%',
-                filter: open ? 'drop-shadow(0px 6px 16px rgba(0,0,0,0.18))' : undefined
+                // Shadow now handled at the <motion.g> level to avoid stacking while closed
+                // filter: open ? 'drop-shadow(0px 6px 16px rgba(0,0,0,0.18))' : undefined
               }}
             />
           </motion.g>
@@ -236,7 +237,7 @@ export default function AnimatedColorWheel() {
               background: 'transparent',
               fontWeight: 600,
               cursor: 'pointer',
-              color: 'var(--accent)',
+              color: 'var(--text-color)',
               outline: 'none',
             }}
             onClick={() => {

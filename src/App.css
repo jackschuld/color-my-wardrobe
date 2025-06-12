@@ -84,7 +84,7 @@ body, .App {
 }
 .cta-btn {
   display: inline-block;
-  background: var(--accent);
+  background: var(--text-color);
   color: #fff;
   font-size: 1.1rem;
   font-weight: 600;
@@ -95,7 +95,7 @@ body, .App {
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 .cta-btn:hover {
-  background: var(--accent);
+  background: var(--text-color);
   color: #fff;
   box-shadow: 0 4px 16px 0 rgba(0,0,0,0.10);
 }
@@ -240,11 +240,11 @@ body, .App {
 }
 .contact-form input:focus,
 .contact-form textarea:focus {
-  border: 1.5px solid var(--accent);
+  border: 1.5px solid var(--text-color);
   outline: none;
 }
 .contact-form button {
-  background: var(--accent);
+  background: var(--text-color);
   color: #fff;
   font-size: 1.1rem;
   font-weight: 600;
@@ -257,12 +257,12 @@ body, .App {
   transition: background 0.2s, color 0.2s;
 }
 .contact-form button:hover {
-  background: var(--accent);
+  background: var(--text-color);
   color: #fff;
 }
 
 .site-footer {
-  background: var(--bg-footer);
+  background: var(--bg-header);
   border-top: 1px solid #e5e5e5;
   margin-top: 3rem;
   padding: 2rem 0 1rem 0;
@@ -505,15 +505,15 @@ body, .App {
 
 /* Apply accent background to standard CTA buttons, but only accent text color for the animated wheel button */
 .cta-btn {
-  background: var(--accent);
+  background: var(--text-color);
 }
 
 .colorwheel-cta-btn {
-  color: var(--accent);
+  color: var(--text-color);
 }
 
 .cta-btn:hover {
-  background: var(--accent);
+  background: var(--text-color);
 }
 
 /* Ensure all common text elements follow theme text color */
@@ -613,7 +613,7 @@ body p, body li, body a {
   resize: none;
 }
 .contact-form-section .contact-form button {
-  background: var(--accent);
+  background: var(--text-color);
   color: #fff;
   font-size: 1.1rem;
   font-weight: 600;
@@ -624,7 +624,7 @@ body p, body li, body a {
   box-shadow: 0 2px 8px 0 rgba(0,0,0,0.06);
 }
 .contact-form-section .contact-form button:hover {
-  background: var(--accent-dark, #b35c00);
+  background: var(--text-color-dark, #b35c00);
 }
 
 /* --- Responsive for Staggered Cards and Contact --- */
