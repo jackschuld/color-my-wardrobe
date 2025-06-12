@@ -43,7 +43,7 @@ export const themes = {
     ],
     cssVars: {
       '--bg-body': '#fff8ef',
-      '--text-color': '#c54a24',
+      '--text-color': '#00718f',
       '--bg-card': '#fff',
       '--bg-header': '#dd432d',
       '--header-text': '#fff2b3'
@@ -59,10 +59,10 @@ export const themes = {
     ],
     cssVars: {
       '--bg-body': '#f5f7ff',
-      '--text-color': '#990000',
+      '--text-color': '#660000',
       '--bg-card': '#fff',
       '--bg-header': '#d1cfe2',
-      '--header-text': '#660000'
+      '--header-text': '#990000'
     }
   }
 };

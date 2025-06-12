@@ -54,16 +54,81 @@ function ThemeDropdown({ themeName, setTheme }) {
   }
   const options = [
     { key: 'spring', icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="7" fill="#ffef99" stroke="#ffb347" strokeWidth="2" /><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" stroke="#ffb347" strokeWidth="1.5" strokeLinecap="round"/></svg>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        {/* Simplistic daisy: 8 petals around center */}
+        <circle cx="12" cy="12" r="3" fill="#FFC107" />
+        {Array.from({ length: 8 }).map((_, i) => (
+          <ellipse
+            key={i}
+            cx="12"
+            cy="5.2"
+            rx="2.2"
+            ry="3.2"
+            fill="#FF69B4"
+            transform={`rotate(${i * 45} 12 12)`}
+          />
+        ))}
+      </svg>
     ) },
     { key: 'summer', icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="7" fill="#b9a2ff" stroke="#74c0ff" strokeWidth="2" /><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" stroke="#74c0ff" strokeWidth="1.5" strokeLinecap="round"/></svg>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="5" fill="#FFD54D" stroke="#FFA500" strokeWidth="2" />
+        <g stroke="#FFA500" strokeWidth="2" strokeLinecap="round">
+          <line x1="12" y1="1" x2="12" y2="4" />
+          <line x1="12" y1="20" x2="12" y2="23" />
+          <line x1="4.22" y1="4.22" x2="6.34" y2="6.34" />
+          <line x1="17.66" y1="17.66" x2="19.78" y2="19.78" />
+          <line x1="1" y1="12" x2="4" y2="12" />
+          <line x1="20" y1="12" x2="23" y2="12" />
+          <line x1="4.22" y1="19.78" x2="6.34" y2="17.66" />
+          <line x1="17.66" y1="6.34" x2="19.78" y2="4.22" />
+        </g>
+      </svg>
     ) },
     { key: 'autumn', icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><ellipse cx="12" cy="12" rx="7" ry="7" fill="#ffd24d" stroke="#e2703a" strokeWidth="2" /><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" stroke="#e2703a" strokeWidth="1.5" strokeLinecap="round"/><path d="M12 12c-2 2-4 2-4 0s2-4 4-4 4 2 4 4-2 2-4 0z" fill="#e2703a" opacity=".3"/></svg>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        {/* Stylized acorn tilted for falling effect */}
+        <g transform="translate(-4 0) rotate(-20 12 12) scale(1.35 1.15)">
+          {/* Acorn nut - slightly tapered bottom */}
+          <path d="M12 6.5 C9.5 6.5 8 9 8 12 C8 15 9.8 17.2 12 18.2 C14.2 17.2 16 15 16 12 C16 9 14.5 6.5 12 6.5 Z" fill="#C78C3A" stroke="#7A4F1A" strokeWidth="1" />
+          {/* Cap - wider to read as acorn */}
+          <path d="M7.5 9 C7.5 6.8 9.4 5 12 5 C14.6 5 16.5 6.8 16.5 9 Z" fill="#8E5B25" stroke="#7A4F1A" strokeWidth="1" />
+          {/* Stem */}
+          <line x1="12" y1="5.5" x2="12" y2="3.5" stroke="#7A4F1A" strokeWidth="1" strokeLinecap="round" />
+        </g>
+      </svg>
     ) },
     { key: 'winter', icon: (
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="7" fill="#cfe8ff" stroke="#0033cc" strokeWidth="2" /><path d="M12 2v3M12 19v3M4.22 4.22l2.12 2.12M17.66 17.66l2.12 2.12M2 12h3M19 12h3M4.22 19.78l2.12-2.12M17.66 6.34l2.12-2.12" stroke="#0033cc" strokeWidth="1.5" strokeLinecap="round"/><path d="M12 8v8M8 12h8" stroke="#0033cc" strokeWidth="1.2"/></svg>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+        {/* Detailed snowflake */}
+        <g stroke="#4BAAFF" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+          {/* Main arms */}
+          <line x1="12" y1="3" x2="12" y2="21" />
+          <line x1="3" y1="12" x2="21" y2="12" />
+          <line x1="5" y1="5" x2="19" y2="19" />
+          <line x1="5" y1="19" x2="19" y2="5" />
+          {/* Arm tips */}
+          {/* Vertical tips */}
+          <line x1="12" y1="3" x2="10.5" y2="5" />
+          <line x1="12" y1="3" x2="13.5" y2="5" />
+          <line x1="12" y1="21" x2="10.5" y2="19" />
+          <line x1="12" y1="21" x2="13.5" y2="19" />
+          {/* Horizontal tips */}
+          <line x1="3" y1="12" x2="5" y2="10.5" />
+          <line x1="3" y1="12" x2="5" y2="13.5" />
+          <line x1="21" y1="12" x2="19" y2="10.5" />
+          <line x1="21" y1="12" x2="19" y2="13.5" />
+          {/* Diagonal tips */}
+          <line x1="5" y1="5" x2="6" y2="7" />
+          <line x1="5" y1="5" x2="7" y2="6" />
+          <line x1="19" y1="19" x2="18" y2="17" />
+          <line x1="19" y1="19" x2="17" y2="18" />
+          <line x1="5" y1="19" x2="6" y2="17" />
+          <line x1="5" y1="19" x2="7" y2="18" />
+          <line x1="19" y1="5" x2="18" y2="7" />
+          <line x1="19" y1="5" x2="17" y2="6" />
+        </g>
+      </svg>
     ) },
   ];
   const current = options.find(o => o.key === themeName) || options[0];
@@ -284,7 +349,7 @@ function App() {
         <section className="contact-form-section" id="contact">
           <div className="contact-inner">
             <h2>Contact</h2>
-            <p>Ready to discover your best colors? Get in touch for a personal consultation!</p>
+            <p>Ready to discover your best colors?<br /> Get in touch for a personal consultation!</p>
             <form className="contact-form" onSubmit={e => e.preventDefault()}>
               <input type="text" placeholder="Your Name" required />
               <input type="email" placeholder="Your Email" required />

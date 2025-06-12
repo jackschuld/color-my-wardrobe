@@ -63,6 +63,23 @@ export default function AnimatedColorWheel() {
   const { theme } = useContext(ThemeContext);
   const [open, setOpen] = useState(false);
 
+  // --- Responsive label scaling for mobile view ---
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+  React.useEffect(() => {
+    const onResize = () => setIsMobile(window.innerWidth <= 600);
+    window.addEventListener('resize', onResize);
+    return () => window.removeEventListener('resize', onResize);
+  }, []);
+
+  const labelScale = isMobile ? 1.6 : 1;
+  const labelWidth = LABEL_WIDTH * labelScale;
+  const labelHeight = LABEL_HEIGHT * labelScale;
+  const labelFontLarge = isMobile ? 16 : 10;
+  const labelFontSmall = isMobile ? 12 : 8;
+
+  // precompute top Y of label for proportional text placement
+  const labelTop = CENTER_Y - 70 - labelHeight / 2;
+
   // Fallback in case something goes wrong
   const swatchColors = (theme && theme.swatches) ? theme.swatches : [
     '#e6d2c3','#e2c7a7','#d6bfa2','#bfae9b','#a7a08c','#7e8b7a','#4e6b5a','#2e4d3c',
@@ -136,10 +153,10 @@ export default function AnimatedColorWheel() {
         ))}
         {/* Center off-white label */}
         <rect
-          x={CENTER_X - LABEL_WIDTH / 2}
-          y={CENTER_Y - 70 - LABEL_HEIGHT / 2}
-          width={LABEL_WIDTH}
-          height={LABEL_HEIGHT}
+          x={CENTER_X - labelWidth / 2}
+          y={CENTER_Y - 70 - labelHeight / 2}
+          width={labelWidth}
+          height={labelHeight}
           rx={LABEL_RADIUS}
           ry={LABEL_RADIUS}
           fill="#f8f6f2"
@@ -150,9 +167,9 @@ export default function AnimatedColorWheel() {
         {/* Placeholder text for label */}
         <text
           x={CENTER_X}
-          y={CENTER_Y - 140}
+          y={labelTop + labelHeight * 0.15}
           textAnchor="middle"
-          fontSize="10"
+          fontSize={labelFontLarge}
           fontWeight="bold"
           fill="#444"
           style={{ fontFamily: 'serif', letterSpacing: 2, textWrap: 'wrap' }}
@@ -161,9 +178,9 @@ export default function AnimatedColorWheel() {
         </text>
         <text
           x={CENTER_X}
-          y={CENTER_Y - 130}
+          y={labelTop + labelHeight * 0.20}
           textAnchor="middle"
-          fontSize="10"
+          fontSize={labelFontLarge}
           fontWeight="bold"
           fill="#444"
           style={{ fontFamily: 'serif', letterSpacing: 2, textWrap: 'wrap' }}
@@ -172,9 +189,9 @@ export default function AnimatedColorWheel() {
         </text>
         <text
           x={CENTER_X}
-          y={CENTER_Y - 120}
+          y={labelTop + labelHeight * 0.25}
           textAnchor="middle"
-          fontSize="10"
+          fontSize={labelFontLarge}
           fontWeight="bold"
           fill="#444"
           style={{ fontFamily: 'serif', letterSpacing: 2, textWrap: 'wrap' }}
@@ -183,29 +200,29 @@ export default function AnimatedColorWheel() {
         </text>
         <text
           x={CENTER_X}
-          y={CENTER_Y - 110}
+          y={labelTop + labelHeight * 0.30}
           textAnchor="middle"
-          fontSize="8"
-          fill="#888"
+          fontSize={labelFontSmall}
+          fill="#666"
           style={{ fontFamily: 'sans-serif' }}
         >
           by
         </text>
         <text
           x={CENTER_X}
-          y={CENTER_Y - 100}
+          y={labelTop + labelHeight * 0.35}
           textAnchor="middle"
-          fontSize="8"
-          fill="#888"
-          style={{ fontFamily: 'sans-serif' }}
+          fontSize={labelFontSmall}
+          fill="var(--text-color)"
+          style={{ fontFamily: 'Pacifico, Zen Kurenaido, cursive, sans-serif' }}
         >
           Peggy
         </text>
         <text
           x={CENTER_X}
-          y={CENTER_Y - 30}
+          y={labelTop + labelHeight * 0.70}
           textAnchor="middle"
-          fontSize="8"
+          fontSize={labelFontSmall}
           fill="#666"
           style={{ fontFamily: 'sans-serif' }}
         >
@@ -213,9 +230,9 @@ export default function AnimatedColorWheel() {
         </text>
         <text
           x={CENTER_X}
-          y={CENTER_Y - 15}
+          y={labelTop + labelHeight * 0.775}
           textAnchor="middle"
-          fontSize="8"
+          fontSize={labelFontSmall}
           fill="#666"
           style={{ fontFamily: 'sans-serif' }}
         >
@@ -230,7 +247,7 @@ export default function AnimatedColorWheel() {
               left: '50%',
               transform: 'translate(-50%, -50%)',
               zIndex: 2,
-              padding: '1rem 2.2rem',
+              padding: '7rem 2.2rem',
               fontSize: '1.2rem',
               borderRadius: '2rem',
               border: 'none',
