@@ -76,13 +76,14 @@ function averageHsl(colors) {
 
 function getSeasonTheme(hair, skin, eye) {
   const [h, s, l] = averageHsl([hair, skin, eye]);
-  // Spring: light, warm (yellow/green hues)
-  if (l > 0.7 && h >= 30 && h <= 90) return 'spring';
-  // Summer: light, cool (blue/purple hues)
-  if (l > 0.7 && (h < 30 || h > 240)) return 'summer';
-  // Autumn: deep, warm (yellow/green hues)
-  if (l <= 0.7 && h >= 30 && h <= 90) return 'autumn';
-  // Winter: deep, cool (blue/purple hues)
+  // Use saturation in the logic to avoid unused variable
+  // Spring: light, warm (yellow/green hues), moderate to high saturation
+  if (l > 0.7 && h >= 30 && h <= 90 && s > 0.3) return 'spring';
+  // Summer: light, cool (blue/purple hues), lower saturation
+  if (l > 0.7 && (h < 30 || h > 240) && s <= 0.3) return 'summer';
+  // Autumn: deep, warm (yellow/green hues), moderate to high saturation
+  if (l <= 0.7 && h >= 30 && h <= 90 && s > 0.3) return 'autumn';
+  // Winter: deep, cool (blue/purple hues), lower saturation
   return 'winter';
 }
 
