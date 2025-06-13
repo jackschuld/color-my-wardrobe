@@ -48,8 +48,7 @@ function rgbToHsl([r, g, b]) {
     h = s = 0;
   } else {
     const d = max - min;
-    // eslint-disable-next-line no-unused-vars
-    s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+    s = l > 0.5 ? d / (2 - max - min) : d / (max + min); // eslint-disable-line no-unused-vars
     switch (max) {
       case r: h = (g - b) / d + (g < b ? 6 : 0); break;
       case g: h = (b - r) / d + 2; break;
