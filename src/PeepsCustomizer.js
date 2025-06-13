@@ -44,11 +44,11 @@ function rgbToHsl([r, g, b]) {
   r /= 255; g /= 255; b /= 255;
   const max = Math.max(r, g, b), min = Math.min(r, g, b);
   let h, s, l = (max + min) / 2;
-  // eslint-disable-next-line no-unused-vars
   if (max === min) {
     h = s = 0;
   } else {
     const d = max - min;
+    // eslint-disable-next-line no-unused-vars
     s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
     switch (max) {
       case r: h = (g - b) / d + (g < b ? 6 : 0); break;
