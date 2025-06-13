@@ -26,9 +26,9 @@ export const themes = {
       '#7c8aa3','#697a8a','#586977','#4b5d6b','#4a4f5c','#5f5a5e','#848a89','#bfc7c6'
     ],
     cssVars: {
-      '--bg-body': '#f3f9ff',
+      '--bg-body': '#dcd2ad',
       '--text-color': '#b9a2ff',
-      '--bg-background': '#dcd2ad',
+      '--bg-background': '#f3f9ff',
       '--bg-header': '#a7d9a5',
       '--header-text': '#4b5d6b'
     }
@@ -42,9 +42,9 @@ export const themes = {
       '#006c7a','#00718f','#185a7d','#44475b','#3b3b3b','#6e5c4f','#b49b7b','#d8c4a8'
     ],
     cssVars: {
-      '--bg-body': '#fff8ef',
+      '--bg-body': '#d8c4a8',
       '--text-color': '#00718f',
-      '--bg-background': '#8f7b2d',
+      '--bg-background': '#fff8ef',
       '--bg-header': '#dd432d',
       '--header-text': '#fff2b3'
     }
@@ -58,11 +58,11 @@ export const themes = {
       '#999999','#cccccc','#ffffff','#d1cfe2','#cfe8ff','#e0ffee','#ffd6e8','#ffe5f7'
     ],
     cssVars: {
-      '--bg-body': '#f5f7ff',
+      '--bg-body': '#cccccc',
       '--text-color': '#660000',
-      '--bg-background': '#cccccc',
+      '--bg-background': '#f5f7ff',
       '--bg-header': '#d1cfe2',
-      '--header-text': '#990000'
+      '--header-text': '#ffffff'
     }
   }
 };

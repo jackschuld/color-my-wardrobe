@@ -151,7 +151,7 @@ function ThemeDropdown({ themeName, setTheme }) {
         onClick={handleClick}
         style={{
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          background: 'var(--bg-body)',
+          background: 'var(--header-text)',
           border: '1.5px solid #ccc',
           borderRadius: '50%',
           padding: 4,
@@ -171,7 +171,7 @@ function ThemeDropdown({ themeName, setTheme }) {
       {open && (
         <div style={{
           position: 'absolute', top: '110%', left: '4px', zIndex: 100,
-          background: 'var(--bg-body)',
+          background: 'var(--header-text)',
           border: '1.5px solid #ccc',
           borderRadius: 12,
           boxShadow: '0 4px 16px 0 rgba(0,0,0,0.10)',
@@ -187,7 +187,7 @@ function ThemeDropdown({ themeName, setTheme }) {
               style={{
                 display: 'flex', alignItems: 'center', justifyContent: 'center',
                 width: '100%',
-                background: themeName === opt.key ? 'var(--bg-body)' : 'transparent',
+                background: themeName === opt.key ? 'var(--header-text)' : 'transparent',
                 border: 'none',
                 padding: 6,
                 cursor: 'pointer',
@@ -267,6 +267,7 @@ function App() {
             <a href="#about" onClick={handleNavLinkClick}>About</a>
             <a href="#how" onClick={handleNavLinkClick}>How It Works</a>
             <a href="#boutiques" onClick={handleNavLinkClick}>Seasonal Boutiques</a>
+            <a href="#sample" onClick={handleNavLinkClick}>Sample Wheel</a>
             <a href="#contact" onClick={handleNavLinkClick}>Contact</a>
       <div>
         <ThemeDropdown themeName={themeName} setTheme={setTheme} />
@@ -332,10 +333,10 @@ function App() {
             </div>
             <div className="how-text">
               <h2>How It Works</h2>
-              <ol>
-                <li>Personal consultation to determine your color season</li>
-                <li>Receive your own color wheel and palette</li>
-                <li>Guidance on how to use your colors for clothing and accessories</li>
+              <ol style={{ listStyleType: 'none' }}>
+                <li>1. Personal consultation to determine your color season</li>
+                <li>2. Receive your own color wheel and palette</li>
+                <li>3. Guidance on how to use your colors for clothing and accessories</li>
               </ol>
               <p className="how-desc">Your color wheel is custom-designed based on your unique skin tone, hair, and eye color. The process is simple, friendly, and fun!</p>
               <p className="how-desc">Our services and products are tailored to your seasonal palette, so you always look your best and feel confident in every choice you make.</p>
@@ -378,8 +379,7 @@ function App() {
             </FadeInSection>
           </div>
         </section>
-           {/* --- HOW IT WORKS PINNED SECTION --- */}
-        <section className="how-pinned-section" id="how">
+        <section className="how-pinned-section" id="sample">
           <div className="how-pinned-inner">
             <PeepsCustomizer />
           </div>

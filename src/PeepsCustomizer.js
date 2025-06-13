@@ -161,7 +161,7 @@ export default function PeepsCustomizer() {
             cursor: 'pointer',
             padding: 0,
             marginBottom: open ? '0.3rem' : 0,
-            color: '#c33',
+            color: 'var(--text-color)',
           }}
         >
           {open ? '▾ ' : '▸ '} {title}
