@@ -10,11 +10,11 @@ export const themes = {
       '#64cb3c','#8dce37','#d4cfa4','#c8b387','#c0ae99','#b19c79','#a28b6c','#927b56'
     ],
     cssVars: {
-      '--bg-body': '#fff9f3',
+      '--bg-body': '#ffd6e8',
       '--text-color': '#ff4f4f',
-      '--bg-card': '#fff',
-      '--bg-header': '#ffd6e8',
-      '--header-text': '#c793ff'
+      '--bg-background': '#fff9f3',
+      '--bg-header': '#ff66aa',
+      '--header-text': '#ffef99'
     }
   },
   summer: {
@@ -28,7 +28,7 @@ export const themes = {
     cssVars: {
       '--bg-body': '#f3f9ff',
       '--text-color': '#b9a2ff',
-      '--bg-card': '#fff',
+      '--bg-background': '#dcd2ad',
       '--bg-header': '#a7d9a5',
       '--header-text': '#4b5d6b'
     }
@@ -44,7 +44,7 @@ export const themes = {
     cssVars: {
       '--bg-body': '#fff8ef',
       '--text-color': '#00718f',
-      '--bg-card': '#fff',
+      '--bg-background': '#8f7b2d',
       '--bg-header': '#dd432d',
       '--header-text': '#fff2b3'
     }
@@ -60,7 +60,7 @@ export const themes = {
     cssVars: {
       '--bg-body': '#f5f7ff',
       '--text-color': '#660000',
-      '--bg-card': '#fff',
+      '--bg-background': '#cccccc',
       '--bg-header': '#d1cfe2',
       '--header-text': '#990000'
     }

@@ -247,7 +247,6 @@ export default function AnimatedColorWheel() {
               left: '50%',
               transform: 'translate(-50%, -50%)',
               zIndex: 2,
-              padding: '7rem 2.2rem',
               fontSize: '1.2rem',
               borderRadius: '2rem',
               border: 'none',

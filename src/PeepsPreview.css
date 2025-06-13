@@ -1,0 +1,34 @@
+/* Hide non-relevant parts in preview. This is a best-effort; if the library doesn't support ::part or similar, this may not work and a fallback will be needed. */
+
+.peeps-preview-head .css-peeps-face,
+.peeps-preview-head .css-peeps-body {
+  display: none !important;
+}
+
+.peeps-preview-face .css-peeps-head,
+.peeps-preview-face .css-peeps-body {
+  display: none !important;
+}
+
+.peeps-preview-body .css-peeps-head,
+.peeps-preview-body .css-peeps-face {
+  display: none !important;
+}
+
+.peeps-controls-card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  padding: 1.5rem 1rem;
+  border: 1px solid #e0e0e0;
+  width: fit-content;
+}
+
+.peeps-preview-grid {
+  display: flex;
+  max-height: 180px;
+  overflow-y: auto;
+  padding-right: 4px;
+  border: 1px solid #ddd;
+  padding: 4px;
+} 

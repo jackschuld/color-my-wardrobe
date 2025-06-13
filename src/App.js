@@ -7,6 +7,7 @@ import AnimatedColorWheel from './AnimatedColorWheel';
 import { ThemeContext } from './ThemeContext';
 import { motion } from 'framer-motion';
 import emailjs from '@emailjs/browser';
+import PeepsCustomizer from './PeepsCustomizer';
 
 function FadeInSection({ children, direction = 'left' }) {
   const domRef = useRef();
@@ -143,22 +144,22 @@ function ThemeDropdown({ themeName, setTheme }) {
     return () => window.removeEventListener('mousedown', handle);
   }, [open]);
   return (
-    <div className="theme-dropdown-root" style={{ position: 'relative', minWidth: 44 }}>
+    <div className="theme-dropdown-root" style={{ position: 'relative', minWidth: 40, margin: 10 }}>
       <motion.button
         aria-haspopup="listbox"
         aria-expanded={open}
         onClick={handleClick}
         style={{
           display: 'flex', alignItems: 'center', justifyContent: 'center',
-          background: 'var(--bg-card)',
+          background: 'var(--bg-body)',
           border: '1.5px solid #ccc',
           borderRadius: '50%',
           padding: 4,
           cursor: 'pointer',
-          width: 44,
-          height: 44,
-          minWidth: 44,
-          minHeight: 44,
+          width: 40,
+          height: 40,
+          minWidth: 40,
+          minHeight: 40,
           boxShadow: open ? '0 2px 8px 0 rgba(0,0,0,0.10)' : 'none',
           transition: 'box-shadow 0.18s',
         }}
@@ -169,13 +170,13 @@ function ThemeDropdown({ themeName, setTheme }) {
       </motion.button>
       {open && (
         <div style={{
-          position: 'absolute', bottom: '110%', left: '4px', zIndex: 100,
-          background: 'var(--bg-card)',
+          position: 'absolute', top: '110%', left: '4px', zIndex: 100,
+          background: 'var(--bg-body)',
           border: '1.5px solid #ccc',
           borderRadius: 12,
           boxShadow: '0 4px 16px 0 rgba(0,0,0,0.10)',
-          minWidth: 44,
-          width: 44,
+          minWidth: 40,
+          width: 40,
           padding: '0.2rem 0',
           display: 'flex', flexDirection: 'column', alignItems: 'stretch',
         }}>
@@ -267,22 +268,17 @@ function App() {
             <a href="#how" onClick={handleNavLinkClick}>How It Works</a>
             <a href="#boutiques" onClick={handleNavLinkClick}>Seasonal Boutiques</a>
             <a href="#contact" onClick={handleNavLinkClick}>Contact</a>
+      <div>
+        <ThemeDropdown themeName={themeName} setTheme={setTheme} />
+      </div>
           </nav>
         </div>
       </header>
-      <div style={{
-        position: 'fixed',
-        bottom: 24,
-        right: 24,
-        zIndex: 200,
-        pointerEvents: 'auto',
-      }}>
-        <ThemeDropdown themeName={themeName} setTheme={setTheme} />
-      </div>
       <main>
         <section className="hero" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
           <AnimatedColorWheel />
         </section>
+        
         <section className="fade-in-cards">
           <div className="stagger-card left">
             <FadeInSection direction="right">
@@ -320,32 +316,30 @@ function App() {
           <div className="stagger-card left">
             <FadeInSection direction="right">
               <div className="how-section" id="how">
-                <div className="how-inner">
-                  <div className="how-visual">
-                    <svg width="220" height="220" viewBox="0 0 220 220">
-                      <circle cx="110" cy="110" r="100" fill="#fff" stroke="#e5e5e5" strokeWidth="2" />
-                      {[...Array(12)].map((_, i) => (
-                        <path
-                          key={i}
-                          d={`M110,110 L${110 + 100 * Math.cos((i * 30 - 90) * Math.PI / 180)},${110 + 100 * Math.sin((i * 30 - 90) * Math.PI / 180)} A100,100 0 0,1 ${110 + 100 * Math.cos(((i + 1) * 30 - 90) * Math.PI / 180)},${110 + 100 * Math.sin(((i + 1) * 30 - 90) * Math.PI / 180)} Z`}
-                          fill={`hsl(${i * 30}, 70%, 60%)`}
-                          opacity="0.92"
-                        />
-                      ))}
-                      <circle cx="110" cy="110" r="60" fill="#fff" />
-                    </svg>
-                  </div>
-                  <div className="how-text">
-                    <h2>How It Works</h2>
-                    <ol>
-                      <li>Personal consultation to determine your color season</li>
-                      <li>Receive your own color wheel and palette</li>
-                      <li>Guidance on how to use your colors for clothing and accessories</li>
-                    </ol>
-                    <p className="how-desc">Your color wheel is custom-designed based on your unique skin tone, hair, and eye color. The process is simple, friendly, and fun!</p>
-                    <p className="how-desc">Our services and products are tailored to your seasonal palette, so you always look your best and feel confident in every choice you make.</p>
-                  </div>
-                </div>
+              <div className="how-visual">
+              <svg width="220" height="220" viewBox="0 0 220 220">
+                <circle cx="110" cy="110" r="100" fill="#fff" stroke="#e5e5e5" strokeWidth="2" />
+                {[...Array(12)].map((_, i) => (
+                  <path
+                    key={i}
+                    d={`M110,110 L${110 + 100 * Math.cos((i * 30 - 90) * Math.PI / 180)},${110 + 100 * Math.sin((i * 30 - 90) * Math.PI / 180)} A100,100 0 0,1 ${110 + 100 * Math.cos(((i + 1) * 30 - 90) * Math.PI / 180)},${110 + 100 * Math.sin(((i + 1) * 30 - 90) * Math.PI / 180)} Z`}
+                    fill={`hsl(${i * 30}, 70%, 60%)`}
+                    opacity="0.92"
+                  />
+                ))}
+                <circle cx="110" cy="110" r="60" fill="#fff" />
+              </svg>
+            </div>
+            <div className="how-text">
+              <h2>How It Works</h2>
+              <ol>
+                <li>Personal consultation to determine your color season</li>
+                <li>Receive your own color wheel and palette</li>
+                <li>Guidance on how to use your colors for clothing and accessories</li>
+              </ol>
+              <p className="how-desc">Your color wheel is custom-designed based on your unique skin tone, hair, and eye color. The process is simple, friendly, and fun!</p>
+              <p className="how-desc">Our services and products are tailored to your seasonal palette, so you always look your best and feel confident in every choice you make.</p>
+            </div>
               </div>
             </FadeInSection>
           </div>
@@ -382,6 +376,12 @@ function App() {
                 </div>
               </div>
             </FadeInSection>
+          </div>
+        </section>
+           {/* --- HOW IT WORKS PINNED SECTION --- */}
+        <section className="how-pinned-section" id="how">
+          <div className="how-pinned-inner">
+            <PeepsCustomizer />
           </div>
         </section>
         <section className="contact-form-section" id="contact">
