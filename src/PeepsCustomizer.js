@@ -232,9 +232,72 @@ export default function PeepsCustomizer() {
   };
 
   // Swatch picker for colors
-  const ColorSwatchPicker = ({ label, value, setter, options }) => (
-    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontSize: '0.75rem', marginRight: '1rem' }}>
-      <span>{label}</span>
+  const ColorSwatchPicker = ({ label, value, setter, options, note }) => (
+    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', fontSize: '0.75rem', marginTop: '.25rem' }}>
+      <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+        {label}
+        {note && (
+          <span style={{ position: 'relative', display: 'inline-block' }}>
+            <span
+              className="colorwheel-tooltip-trigger"
+              style={{
+                display: 'inline-block',
+                width: 16,
+                height: 16,
+                borderRadius: '50%',
+                background: '#e0e0e0',
+                color: '#555',
+                textAlign: 'center',
+                fontWeight: 'bold',
+                fontSize: '0.9em',
+                lineHeight: '16px',
+                cursor: 'pointer',
+                marginLeft: 4,
+                border: '1px solid #bbb',
+                userSelect: 'none',
+              }}
+              tabIndex={0}
+              aria-label="Info"
+            >
+              i
+            </span>
+            <span
+              style={{
+                visibility: 'hidden',
+                opacity: 0,
+                width: 220,
+                background: '#222',
+                color: '#fff',
+                textAlign: 'center',
+                borderRadius: 6,
+                padding: '6px 10px',
+                position: 'absolute',
+                zIndex: 1,
+                bottom: '125%',
+                left: '50%',
+                transform: 'translateX(-50%)',
+                transition: 'opacity 0.2s',
+                fontSize: '0.75rem',
+                pointerEvents: 'none',
+                boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+              }}
+              className="colorwheel-tooltip"
+            >
+              {note}
+            </span>
+            <style>
+              {`
+                .colorwheel-tooltip-trigger:hover + .colorwheel-tooltip,
+                .colorwheel-tooltip-trigger:focus + .colorwheel-tooltip {
+                  visibility: visible !important;
+                  opacity: 1 !important;
+                  pointer-events: auto !important;
+                }
+              `}
+            </style>
+          </span>
+        )}
+      </span>
       <div
         style={{
           display: 'grid',
@@ -279,12 +342,36 @@ export default function PeepsCustomizer() {
         <VariantSection title="Face" type="face" variants={FACE_VARIANTS} selected={current.face} onSelect={v => updateState({ face: v })} />
         <VariantSection title="Body" type="body" variants={BODY_VARIANTS} selected={current.body} onSelect={v => updateState({ body: v })} />
         <div style={{ marginTop: '0.5rem' }}>
-          <ColorSwatchPicker label="Hair" value={current.hairColor} setter={color => updateState({ hairColor: color })} options={HAIR_COLORS} />
-          <ColorSwatchPicker label="Skin" value={current.skinTone} setter={color => updateState({ skinTone: color })} options={SKIN_TONES} />
-          <ColorSwatchPicker label="Eyes" value={current.eyeColor} setter={color => updateState({ eyeColor: color })} options={EYE_COLORS} />
+          <ColorSwatchPicker
+            label="Hair"
+            value={current.hairColor}
+            setter={color => updateState({ hairColor: color })}
+            options={HAIR_COLORS}
+            note="NOTE: Not an accurate representation - actual wheel contains 372 possible combinations!"
+          />
+          <ColorSwatchPicker
+            label="Skin"
+            value={current.skinTone}
+            setter={color => updateState({ skinTone: color })}
+            options={SKIN_TONES}
+            note="NOTE: Not an accurate representation - actual wheel contains 372 possible combinations!"
+          />
+          <ColorSwatchPicker
+            label="Eyes"
+            value={current.eyeColor}
+            setter={color => updateState({ eyeColor: color })}
+            options={EYE_COLORS}
+            note="NOTE: Not an accurate representation - actual wheel contains 372 possible combinations!"
+          />
         </div>
-        <div style={{ marginTop: '1.5rem' }}>
-          <ColorSwatchPicker label="Sample Wheel" value={current.clothesColor} setter={color => updateState({ clothesColor: color })} options={clothesPalette} />
+        <div style={{ marginTop: '1rem' }}>
+          <ColorSwatchPicker
+            label="Generated Palette"
+            value={current.clothesColor}
+            setter={color => updateState({ clothesColor: color })}
+            options={clothesPalette}
+            note="NOTE: Actual wheel contains over 40 colors."
+          />
         </div>
       </div>
 
