@@ -266,8 +266,7 @@ function App() {
           <nav className={navOpen ? 'open' : ''}>
             <a href="#about" onClick={handleNavLinkClick}>About</a>
             <a href="#how" onClick={handleNavLinkClick}>How It Works</a>
-            <a href="#boutiques" onClick={handleNavLinkClick}>Seasonal Boutiques</a>
-            <a href="#sample" onClick={handleNavLinkClick}>Sample Wheel</a>
+            <a href="#boutiques" onClick={handleNavLinkClick}>Shop</a>
             <a href="#contact" onClick={handleNavLinkClick}>Contact</a>
       <div>
         <ThemeDropdown themeName={themeName} setTheme={setTheme} />
