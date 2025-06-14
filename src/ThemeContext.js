@@ -67,7 +67,7 @@ export const themes = {
   }
 };
 
-const defaultThemeName = 'spring';
+const defaultThemeName = 'autumn';
 
 export const ThemeContext = createContext({
   themeName: defaultThemeName,
