@@ -64,9 +64,9 @@ export default function AnimatedColorWheel() {
   const [open, setOpen] = useState(false);
 
   // --- Responsive label scaling for mobile view ---
-  const [isMobile, setIsMobile] = useState(window.innerWidth <= 600);
+  const [isMobile, setIsMobile] = useState(window.innerWidth <= 900);
   React.useEffect(() => {
-    const onResize = () => setIsMobile(window.innerWidth <= 600);
+    const onResize = () => setIsMobile(window.innerWidth <= 900);
     window.addEventListener('resize', onResize);
     return () => window.removeEventListener('resize', onResize);
   }, []);
@@ -238,44 +238,57 @@ export default function AnimatedColorWheel() {
         >
           PALETTE
         </text>
-      </svg>
-          <button
-            className="colorwheel-cta-btn"
+        <foreignObject
+          x={CENTER_X - labelWidth / 2}
+          y={labelTop + labelHeight * 0.80}
+          width={labelWidth}
+          height={labelHeight * 0.15}
+        >
+          <div
             style={{
-              position: 'absolute',
-              top: '50%',
-              left: '50%',
-              transform: 'translate(-50%, -50%)',
-              zIndex: 2,
-              fontSize: '1.2rem',
-              borderRadius: '2rem',
-              border: 'none',
-              background: 'transparent',
-              fontWeight: 600,
-              cursor: 'pointer',
-              color: 'var(--text-color)',
-              outline: 'none',
-            }}
-            onClick={() => {
-              const section = document.querySelector('.fade-in-cards');
-              if (section) {
-                section.scrollIntoView({ behavior: 'smooth' });
-              }
+              width: '100%',
+              height: '100%',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
             }}
           >
-            {"Get Started".split("").map((char, index) => (
-              <motion.span
-                key={index}
-                custom={index}
-                variants={letterWaveVariants}
-                initial="initial"
-                animate="animate"
-                style={{ display: 'inline-block' }}
-              >
-                {char === ' ' ? '\u00A0' : char}
-              </motion.span>
-            ))}
-          </button>
+            <button
+              className="colorwheel-cta-btn"
+              style={{
+                fontSize: isMobile ? '1.75rem' : '1rem',
+                borderRadius: '2rem',
+                border: 'none',
+                background: 'transparent',
+                fontWeight: 600,
+                cursor: 'pointer',
+                color: 'var(--text-color)',
+                outline: 'none',
+                padding: 0,
+              }}
+              onClick={() => {
+                const section = document.querySelector('.fade-in-cards');
+                if (section) {
+                  section.scrollIntoView({ behavior: 'smooth' });
+                }
+              }}
+            >
+              {"Get Started".split("").map((char, index) => (
+                <motion.span
+                  key={index}
+                  custom={index}
+                  variants={letterWaveVariants}
+                  initial="initial"
+                  animate="animate"
+                  style={{ display: 'inline-block' }}
+                >
+                  {char === ' ' ? '\u00A0' : char}
+                </motion.span>
+              ))}
+            </button>
+          </div>
+        </foreignObject>
+      </svg>
     </div>
   );
 } 

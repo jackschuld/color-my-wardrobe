@@ -267,7 +267,7 @@ export default function PeepsCustomizer() {
   );
 
   return (
-    <div style={{ display: 'flex', gap: '2rem', alignItems: 'center', flexWrap: 'wrap' }}>
+    <div>
       {/* LEFT: controls */}
       <div className="peeps-controls-card">
         {/* Undo/Redo buttons */}

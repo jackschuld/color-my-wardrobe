@@ -24,7 +24,7 @@ body, button, .App {
   background: var(--bg-header);
   box-shadow: 0 2px 12px 0 rgba(0,0,0,0.04);
   z-index: 100;
-  height: 64px;
+  padding: 1rem 0;
   display: flex;
   align-items: center;
   transition: box-shadow 0.2s;
@@ -50,8 +50,6 @@ body, button, .App {
   color: var(--header-text);
   text-decoration: none;
   margin: 0 1rem;
-  font-size: 1rem;
-  font-weight: 500;
   transition: color 0.2s;
   font-family: 'Pacifico', 'Zen Kurenaido', cursive, sans-serif;
 }
@@ -305,39 +303,33 @@ body, button, .App {
   align-items: center;
   text-align: center;
 }
-
-@media (max-width: 900px) {
-  .about-inner, .how-inner {
-    flex-direction: column;
-    gap: 2rem;
-    align-items: flex-start;
+@media (max-width: 1200px) {
+  .colorwheel-cta-btn {
+    scale: .55;
   }
-  .about-section, .how-section {
-    padding: 2rem 1rem 2rem 1rem;
-  }
-  .fade-in-cards {
-    padding: 8vh 0;
-  }
-  .fade-in-cards > * {
-    padding: 2rem 1rem 2rem 1rem;
-    max-width: 100vw;
-    box-sizing: border-box;
+  .hero {
+    scale: 1.25;
   }
 }
-@media (max-width: 600px) {
+@media (max-width: 900px) {
+  .site-header nav a {
+    font-size: 2rem;
+  }
   .header-content {
     padding: 0 1rem;
   }
   .site-header nav {
     display: none;
     position: absolute;
-    top: 64px;
+    top: 0;
     left: 0;
     width: 100vw;
+    height: 100vh;
     background: var(--bg-header);
     box-shadow: 0 2px 12px 0 rgba(0,0,0,0.08);
     flex-direction: column;
-    align-items: flex-end;
+    align-items: center;
+    justify-content: center;
     z-index: 200;
   }
   .site-header nav.open {
@@ -364,6 +356,34 @@ body, button, .App {
   }
   .hero h1 {
     font-size: 2.1rem;
+  }
+  /* Fade-in-cards */
+  /* Why Color Me Beautiful? */
+  /* How It Works */
+  /* Hassle-Free Returns */
+  .stagger-card.left > .fade-in-section::before {
+    transform: translate(0%) !important;
+  }
+  /* Meet Peg */
+  /* Shop Your Seasonal Boutique */
+  .stagger-card.right > .fade-in-section::before {
+    transform: translate(35%) !important;
+  }
+  .about-inner, .how-inner {
+    flex-direction: column;
+    gap: 2rem;
+    align-items: flex-start;
+  }
+  .about-section, .how-section {
+    padding: 2rem 1rem 2rem 1rem;
+  }
+  .fade-in-cards {
+    padding: 8vh 0;
+  }
+  .fade-in-cards > * {
+    padding: 2rem 1rem 2rem 1rem;
+    max-width: 100vw;
+    box-sizing: border-box;
   }
   .about-section, .how-section {
     padding: 1.2rem 0.5rem 1.2rem 0.5rem;
@@ -428,6 +448,19 @@ body, button, .App {
   .stagger-card {
     justify-content: center;
   }
+  /* Sample Wheel */
+  .how-pinned-section .how-visual svg {
+    width: 140px !important;
+    height: 140px !important;
+  }
+  .how-pinned-section .how-text h2 {
+    font-size: 1.3rem;
+  }
+  .how-pinned-section .how-text ol,
+  .how-pinned-section .how-desc {
+    font-size: 1rem;
+  }
+  /* Contact Form */
   .contact-form-section {
     padding: 2rem 0;
     width: 100vw;
@@ -458,17 +491,17 @@ body, button, .App {
   }
   /* Ensure images within card sections scale and stay centered on phones */
   .fade-in-cards img {
-    width: 85% !important; /* override any inline width */
-    max-width: 320px;      /* sensible upper bound so portrait images don't dominate */
+    width: 85% !important; 
+    max-width: 320px;      
     height: auto !important;
     display: block;
-    margin: 0 auto 1rem;   /* center image and keep spacing below */
-    float: none !important;/* cancel inline float that can cause overflow */
+    margin: 0 auto 1rem;   
+    float: none !important;
   }
 }
-@media (min-width: 601px) {
+@media (min-width: 900px) {
   .footer-text {
-    transform: translateX(-75px); /* roughly half image width to counterbalance */
+    transform: translateX(-75px);
   }
   .site-header .hamburger {
     display: none;
@@ -483,7 +516,22 @@ body, button, .App {
     width: auto;
   }
 }
-
+@media (max-height: 1200px) {
+  .how-pinned-inner {
+    scale: .75 !important;
+  }
+}
+@media (max-height: 1000px) {
+  .how-pinned-inner {
+    scale: .65 !important;
+    margin-top: 15vh !important;
+  }
+}
+@media (max-height: 800px) {
+  .how-pinned-inner {
+    scale: .45 !important;
+  }
+}
 .fade-in-cards {
   display: flex;
   flex-direction: column;
@@ -533,6 +581,7 @@ body, .App {
   color: var(--text-color);
   font-family: 'Zen Kurenaido', 'SF Pro Display', 'Segoe UI', 'Helvetica Neue', Arial, 'Liberation Sans', sans-serif;
   font-weight: 600;
+  scale: .7
 }
 
 .cta-btn:hover {
@@ -586,64 +635,28 @@ body p, body li, body a {
   content: "";
   position: absolute;
   inset: 0;
-  width: 75%;
-  height: 85%;
   background: var(--text-color);
   box-shadow: 0 4px 16px 0 rgba(0,0,0,0.06);
   z-index: -1; 
   transition: transform 0.4s cubic-bezier(0.4,0,0.2,1);
+  width: 75%;
+  height: 75%;
 }
 
 /* Why Color Me Beautiful? */
-.stagger-card.left:nth-child(1) > .fade-in-section::before {
-  transform: translate(40px, 0);
-}
-
 /* How It Works */
-.stagger-card.left:nth-child(3) > .fade-in-section::before {
-  transform: translate(40px, 100px);
+/* Hassle-Free Returns */
+.stagger-card.left > .fade-in-section::before {
+  transform: translate(10%);
+  height: 85%;
 }
-
-/* Shop Your Seasonal Boutique */
-.stagger-card.right:nth-child(4) > .fade-in-section::before {
-  transform: translate(150px, 80px);
-}
-
 /* Meet Peg */
 .stagger-card.right:nth-child(2) > .fade-in-section::before {
-  transform: translate(135px, 0);
+  transform: translate(22%, 2%);
 }
-
-/* Hassle-Free Returns */
-.stagger-card.left:nth-child(5) > .fade-in-section::before {
-  transform: translate(40px, 140px);
-}
-
-@media (max-width: 600px) {
-  /* Why Color Me Beautiful? */
-  .stagger-card.left:nth-child(1) > .fade-in-section::before {
-    transform: translate(0, 10px);
-  }
-
-  /* How It Works */
-  .stagger-card.left:nth-child(3) > .fade-in-section::before {
-    transform: translate(0, 90px);
-  }
-
-  /* Shop Your Seasonal Boutique */
-  .stagger-card.right:nth-child(4) > .fade-in-section::before {
-    transform: translate(95px, 70px);
-  }
-
-  /* Meet Peg */
-  .stagger-card.right:nth-child(2) > .fade-in-section::before {
-    transform: translate(90px, 10px);
-  }
-
-  /* Hassle-Free Returns */
-  .stagger-card.left:nth-child(5) > .fade-in-section::before {
-    transform: translate(0, 100px);
-  }
+/* Shop Your Seasonal Boutique */
+.stagger-card.right:nth-child(4) > .fade-in-section::before {
+  transform: translate(22%, 24%);
 }
 
 /* Remove extra margin from cards inside stagger-card */
@@ -722,57 +735,6 @@ body p, body li, body a {
   box-shadow: 0 4px 12px 0 rgba(0,0,0,0.1);
 }
 
-/* --- Responsive for Staggered Cards and Contact --- */
-@media (max-width: 900px) {
-  .stagger-card > .fade-in-section {
-    width: 90%;
-    min-width: 0;
-  }
-  .contact-form-section .contact-inner {
-    padding: 2rem 1rem;
-  }
-  .hero {
-    scale: 1.4;
-  }
-  .colorwheel-cta-btn {
-    scale: .52;
-    top: 60% !important;
-    left: 50% !important;
-  }
-}
-@media (max-width: 600px) {
-  .stagger-card > .fade-in-section {
-    width: 100%;
-    min-width: 0;
-  }
-  .stagger-card {
-    justify-content: center;
-  }
-  .contact-form-section {
-    padding: 2rem 1rem;
-    width: 100vw;
-    max-width: 100vw;
-    box-sizing: border-box;
-    overflow-x: hidden;
-  }
-  .contact-form-section .contact-inner {
-    padding: 1.2rem 1.5rem;
-    width: 100vw;
-    max-width: 100vw;
-    box-sizing: border-box;
-  }
-  .contact-form-section .contact-form input,
-  .contact-form-section .contact-form textarea {
-    max-width: 98vw;
-    box-sizing: border-box;
-  }
-  .contact-form-section .contact-form button {
-    max-width: 98vw;
-    width: 100%;
-    box-sizing: border-box;
-  }
-}
-
 /* Smooth scroll and offset for fixed header navigation */
 html {
   scroll-behavior: smooth;
@@ -797,44 +759,30 @@ p {
 
 /* --- HOW IT WORKS PINNED SECTION --- */
 .how-pinned-section {
-  width: 100vw;
-  min-height: 80vh;
   background: var(--bg-background);
-  color: #234;
+  color: var(--text-color);
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  z-index: 0;
   top: 0;
   position: -webkit-sticky;
   position: sticky;
   height: 100vh;
-  transition: background 0.5s;
 }
 .how-pinned-inner {
-  display: flex;
-  align-items: center;
-  gap: 3rem;
-  width: 100%;
-  max-width: 900px;
-  justify-content: center;
-  padding: 3rem 2rem;
+  margin-top: 10vh;
 }
 .how-pinned-section .how-text h2 {
-  color: #234;
   font-size: 2.2rem;
   font-weight: 800;
   margin-bottom: 1rem;
 }
 .how-pinned-section .how-text ol {
-  color: #234;
   font-size: 1.15rem;
   margin-bottom: 1.2rem;
   padding-left: 1.2rem;
 }
 .how-pinned-section .how-desc {
-  color: #234;
   font-size: 1.08rem;
   margin-top: 0.5rem;
 }
@@ -847,38 +795,30 @@ p {
 .how-pinned-section .how-text {
   flex: 2;
 }
-@media (max-width: 900px) {
-  .how-pinned-inner {
-    flex-direction: column;
-    gap: 2rem;
-    align-items: flex-start;
-    padding: 2rem 1rem;
-    scale: .75;
-
-  }
-}
-@media (max-width: 600px) {
-  .how-pinned-inner {
-    padding: 1.2rem 0.5rem;
-    margin-top: 13vh;
-    align-items: center;
-    gap: 1.2rem;
-    max-width: 100vw;
-    scale: .6;
-  }
-  .how-pinned-section .how-visual svg {
-    width: 140px !important;
-    height: 140px !important;
-  }
-  .how-pinned-section .how-text h2 {
-    font-size: 1.3rem;
-  }
-  .how-pinned-section .how-text ol,
-  .how-pinned-section .how-desc {
-    font-size: 1rem;
-  }
-}
 /* Add extra margin to fade-in-cards to allow pinning effect */
 .fade-in-cards {
   margin: 20vh 0;
+}
+
+/* --- Custom Scrollbar Styling --- */
+/* ::-webkit-scrollbar {
+  width: 12px;
+  background: var(--bg-header);
+} */
+/* ::-webkit-scrollbar-thumb {
+  background: var(--text-color);
+  border-radius: 8px;
+  border: 2px solid var(--bg-header);
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--header-text);
+}
+::-webkit-scrollbar-corner {
+  background: var(--bg-header);
+} */
+
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--header-text) var(--bg-header);
 }

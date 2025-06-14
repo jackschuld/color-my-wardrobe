@@ -213,10 +213,10 @@ function App() {
   // Theme context
   const { themeName, setTheme } = useContext(ThemeContext);
 
-  // Track viewport size for simple mobile breakpoint (<=600px)
-  const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 600);
+  // Track viewport size for simple mobile breakpoint (<=900px)
+  const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 900);
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 600);
+    const handleResize = () => setIsMobile(window.innerWidth <= 900);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
