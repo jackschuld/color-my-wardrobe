@@ -97,9 +97,20 @@ export function ThemeProvider({ children }) {
 
   function getSeasonFromDate(date) {
     const month = date.getMonth() + 1; // 1-12
-    if (month >= 3 && month <= 5) return 'spring';
-    if (month >= 6 && month <= 8) return 'summer';
-    if (month >= 9 && month <= 11) return 'autumn';
+    const day = date.getDate();
+    // Spring: Mar 20 – Jun 20
+    if ((month === 3 && day >= 20) || (month > 3 && month < 6) || (month === 6 && day <= 20)) {
+      return 'spring';
+    }
+    // Summer: Jun 21 – Sep 22
+    if ((month === 6 && day >= 21) || (month > 6 && month < 9) || (month === 9 && day <= 22)) {
+      return 'summer';
+    }
+    // Autumn: Sep 23 – Dec 20
+    if ((month === 9 && day >= 23) || (month > 9 && month < 12) || (month === 12 && day <= 20)) {
+      return 'autumn';
+    }
+    // Winter: Dec 21 – Mar 19
     return 'winter';
   }
 

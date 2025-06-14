@@ -238,57 +238,34 @@ export default function AnimatedColorWheel() {
         >
           PALETTE
         </text>
-        <foreignObject
-          x={CENTER_X - labelWidth / 2}
-          y={labelTop + labelHeight * 0.80}
-          width={labelWidth}
-          height={labelHeight * 0.15}
-        >
-          <div
-            style={{
-              width: '100%',
-              height: '100%',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}
-          >
-            <button
-              className="colorwheel-cta-btn"
-              style={{
-                fontSize: isMobile ? '1.75rem' : '1rem',
-                borderRadius: '2rem',
-                border: 'none',
-                background: 'transparent',
-                fontWeight: 600,
-                cursor: 'pointer',
-                color: 'var(--text-color)',
-                outline: 'none',
-                padding: 0,
-              }}
-              onClick={() => {
-                const section = document.querySelector('.fade-in-cards');
-                if (section) {
-                  section.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-            >
-              {"Get Started".split("").map((char, index) => (
-                <motion.span
-                  key={index}
-                  custom={index}
-                  variants={letterWaveVariants}
-                  initial="initial"
-                  animate="animate"
-                  style={{ display: 'inline-block' }}
-                >
-                  {char === ' ' ? '\u00A0' : char}
-                </motion.span>
-              ))}
-            </button>
-          </div>
-        </foreignObject>
       </svg>
+      {/* Add the button outside the SVG, absolutely centered over the label */}
+      <div
+        className="colorwheel-cta-btn-container"
+      >
+        <button
+          className="colorwheel-cta-btn"
+          onClick={() => {
+            const section = document.querySelector('.fade-in-cards');
+            if (section) {
+              section.scrollIntoView({ behavior: 'smooth' });
+            }
+          }}
+        >
+          {"Get Started".split("").map((char, index) => (
+            <motion.span
+              key={index}
+              custom={index}
+              variants={letterWaveVariants}
+              initial="initial"
+              animate="animate"
+              style={{ display: 'inline-block' }}
+            >
+              {char === ' ' ? '\u00A0' : char}
+            </motion.span>
+          ))}
+        </button>
+      </div>
     </div>
   );
 } 
