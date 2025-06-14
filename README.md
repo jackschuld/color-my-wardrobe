@@ -1,70 +1,40 @@
-# Getting Started with Create React App
+# Color Me Beautiful - Peggy McAuliffe Schuld
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A modern, consultation site for Color Me Beautiful, built for Peggy McAuliffe Schuld. This app helps users discover their best colors, learn about personal color analysis, and shop curated makeup and beauty products tailored to their unique palette.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- **Modern, Responsive Design:** Clean, elegant, and mobile-friendly interface.
+- **Fade-in Card Sections:** Engaging, animated sections for company info, consultant bio, how it works, and shopping.
+- **Customizable Art:** Users can interact with a customizable avatar ("Peeps") to visualize color palettes.
+- **Theme Switcher:** Switch between seasonal color themes (Spring, Summer, Autumn, Winter).
+- **Contact Form:** Secure contact form powered by EmailJS for consultation requests.
+- **Direct Shopping:** Button to shop makeup and beauty products curated for your palette via the Color Me Beautiful partner site.
 
-### `npm start`
+## Tech Stack & NPM Packages
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- **React** – Main UI framework
+- **framer-motion** – For smooth animations and fade-in effects
+- **emailjs-com / @emailjs/browser** – For sending contact form submissions via email
+- **css-peeps** – For customizable avatar art ([see attribution below](#attribution))
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Art & Attribution
 
-### `npm test`
+- **Customizable Avatar Art:**
+  - This app uses [css-peeps](https://github.com/propjockey/css-peeps) by Jane Ori (PropJockey) for the customizable avatar art. css-peeps is free and open source under the BSD-2-Clause license. Original black & white SVG character line drawings by Open Peeps (CC0 License).
+  - css-peeps: https://github.com/propjockey/css-peeps
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Getting Started
 
-### `npm run build`
+1. Clone the repo
+2. Install dependencies: `npm install`
+3. Set up your `.env` file with your EmailJS keys
+4. Run locally: `npm start`
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## License
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+See individual package licenses for details. css-peeps is BSD-2-Clause. Open Peeps art is CC0.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+---
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+**Developed for Peggy McAuliffe Schuld, Color Me Beautiful Consultant.**
