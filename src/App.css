@@ -97,8 +97,7 @@ body, button, .App {
   transition: background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 .cta-btn:hover {
-  background: var(--text-color);
-  color: var(--text-color);
+  color: var(--bg-body);
   box-shadow: 0 4px 16px 0 rgba(0,0,0,0.10);
 }
 .boutique-section,
@@ -174,11 +173,12 @@ body, button, .App {
   max-width: 900px;
   justify-content: center;
 }
-.how-visual {
+.boutique-visual {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  margin-top: 2rem;
 }
 .how-text {
   flex: 2;
@@ -648,7 +648,6 @@ body p, body li, body a {
 /* Hassle-Free Returns */
 .stagger-card.left > .fade-in-section::before {
   transform: translate(10%);
-  height: 85%;
 }
 /* Meet Peg */
 .stagger-card.right:nth-child(2) > .fade-in-section::before {
@@ -656,7 +655,7 @@ body p, body li, body a {
 }
 /* Shop Your Seasonal Boutique */
 .stagger-card.right:nth-child(4) > .fade-in-section::before {
-  transform: translate(22%, 24%);
+  transform: translate(24%, 30%);
 }
 
 /* Remove extra margin from cards inside stagger-card */
