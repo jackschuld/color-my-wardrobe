@@ -825,12 +825,6 @@ html {
   .how-pinned-inner {
     scale: .75 !important;
   }
-  .colorwheel-cta-btn {
-    scale: .9;
-  }
-  .colorwheel-cta-btn-container {
-    top: 56%;
-  }
 }
 @media (max-height: 1000px) {
   .how-pinned-inner {
