@@ -61,7 +61,7 @@ export const themes = {
       '--bg-body': '#cccccc',
       '--text-color': '#660000',
       '--bg-background': '#f5f7ff',
-      '--bg-header': '#d1cfe2',
+      '--bg-header': '#0099ff',
       '--header-text': '#ffffff'
     }
   }
@@ -76,50 +76,10 @@ export const ThemeContext = createContext({
 });
 
 export function ThemeProvider({ children }) {
-  // Helper to get Pacific Time with DST
-  function getPacificDate() {
-    // Get current UTC time
-    const now = new Date();
-    // Figure out if DST is in effect in Pacific Time
-    // DST starts 2nd Sunday in March, ends 1st Sunday in November
-    const year = now.getUTCFullYear();
-    // 2nd Sunday in March
-    const dstStart = new Date(Date.UTC(year, 2, 1));
-    dstStart.setUTCDate(8 - dstStart.getUTCDay() + 1); // 2nd Sunday
-    // 1st Sunday in November
-    const dstEnd = new Date(Date.UTC(year, 10, 1));
-    dstEnd.setUTCDate(1 + (7 - dstEnd.getUTCDay()) % 7); // 1st Sunday
-    // Pacific offset: -7 if DST, -8 otherwise
-    let offset = -8;
-    if (now >= dstStart && now < dstEnd) offset = -7;
-    return new Date(now.getTime() + offset * 60 * 60 * 1000);
-  }
-
-  function getSeasonFromDate(date) {
-    const month = date.getMonth() + 1; // 1-12
-    const day = date.getDate();
-    // Spring: Mar 20 – Jun 20
-    if ((month === 3 && day >= 20) || (month > 3 && month < 6) || (month === 6 && day <= 20)) {
-      return 'spring';
-    }
-    // Summer: Jun 21 – Sep 22
-    if ((month === 6 && day >= 21) || (month > 6 && month < 9) || (month === 9 && day <= 22)) {
-      return 'summer';
-    }
-    // Autumn: Sep 23 – Dec 20
-    if ((month === 9 && day >= 23) || (month > 9 && month < 12) || (month === 12 && day <= 20)) {
-      return 'autumn';
-    }
-    // Winter: Dec 21 – Mar 19
-    return 'winter';
-  }
-
-  // On first load, check localStorage for user theme, else auto-detect
+  // On first load, check localStorage for user theme
   const [themeName, setThemeName] = useState(() => {
     const stored = window.localStorage.getItem('themeName');
-    if (stored && themes[stored]) return stored;
-    const pacificDate = getPacificDate();
-    return getSeasonFromDate(pacificDate);
+    return (stored && themes[stored]) ? stored : defaultThemeName;
   });
 
   // When user selects a theme, update state and persist to localStorage

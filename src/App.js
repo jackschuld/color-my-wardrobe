@@ -36,24 +36,30 @@ function FadeInSection({ children, direction = 'left' }) {
 function ThemeDropdown({ themeName, setTheme }) {
   const [open, setOpen] = React.useState(false);
   const [pulse, setPulse] = React.useState(false);
+  const [spinning, setSpinning] = React.useState(false);
   const lastInteracted = React.useRef(Date.now());
   // Pulse every 60s if not clicked
   React.useEffect(() => {
     if (open) return; // don't pulse while open
     const interval = setInterval(() => {
-      if (Date.now() - lastInteracted.current > 10000) {
+      if (Date.now() - lastInteracted.current > 5000) {
         setPulse(true);
-        setTimeout(() => setPulse(false), 1200);
+        setTimeout(() => setPulse(false), 2000);
       }
     }, 5000);
     return () => clearInterval(interval);
   }, [open]);
-  // On click, reset timer
+  
+  // On click, reset timer and trigger spin
   function handleClick() {
     lastInteracted.current = Date.now();
     setOpen(v => !v);
     setPulse(false);
+    // Trigger spin animation
+    setSpinning(true);
+    setTimeout(() => setSpinning(false), 600);
   }
+  
   const options = [
     { key: 'spring', icon: (
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
@@ -144,7 +150,10 @@ function ThemeDropdown({ themeName, setTheme }) {
     return () => window.removeEventListener('mousedown', handle);
   }, [open]);
   return (
-    <div className="theme-dropdown-root" style={{ position: 'relative', minWidth: 40, margin: 10 }}>
+    <div 
+      className="theme-dropdown-root" 
+      style={{ position: 'relative', minWidth: 40, margin: 10 }}
+    >
       <motion.button
         aria-haspopup="listbox"
         aria-expanded={open}
@@ -163,8 +172,18 @@ function ThemeDropdown({ themeName, setTheme }) {
           boxShadow: open ? '0 2px 8px 0 rgba(0,0,0,0.10)' : 'none',
           transition: 'box-shadow 0.18s',
         }}
-        animate={pulse ? { scale: [1, 1.18, 1, 1.18, 1] } : { scale: 1 }}
-        transition={{ duration: 1.2, times: [0, 0.25, 0.5, 0.75, 1], ease: 'easeInOut' }}
+        animate={
+          spinning 
+            ? { scale: 1, rotate: 360 }
+            : pulse 
+            ? { scale: [1, 1.18, 1, 1.18, 1], rotate: 0 } 
+            : { scale: 1, rotate: 0 }
+        }
+        transition={
+          spinning 
+            ? { duration: 0.6, ease: 'easeInOut' }
+            : { duration: 1.2, times: [0, 0.25, 0.5, 0.75, 1], ease: 'easeInOut' }
+        }
       >
         {current.icon}
       </motion.button>
@@ -209,6 +228,7 @@ function ThemeDropdown({ themeName, setTheme }) {
 function App() {
   const [navOpen, setNavOpen] = useState(false);
   const formRef = useRef(null);
+  const [buttonStatus, setButtonStatus] = useState('idle'); // idle, sending, success, error
 
   // Theme context
   const { themeName, setTheme } = useContext(ThemeContext);
@@ -216,7 +236,7 @@ function App() {
   // Track viewport size for simple mobile breakpoint (<=900px)
   const [isMobile, setIsMobile] = useState(() => window.innerWidth <= 900);
   useEffect(() => {
-    const handleResize = () => setIsMobile(window.innerWidth <= 900);
+    const handleResize = () => setIsMobile(window.innerWidth <= 1150);
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
@@ -236,6 +256,8 @@ function App() {
 
   const sendEmail = (e) => {
     e.preventDefault();
+    setButtonStatus('sending');
+    
     emailjs
       .sendForm(
         process.env.REACT_APP_EMAILJS_SERVICE_ID,
@@ -244,17 +266,53 @@ function App() {
         process.env.REACT_APP_EMAILJS_PUBLIC_KEY
       )
       .then(() => {
-        alert('Message sent successfully!');
+        setButtonStatus('success');
         e.target.reset();
+        // Reset button after 5 seconds
+        setTimeout(() => {
+          setButtonStatus('idle');
+        }, 5000);
       })
       .catch((error) => {
         console.error('EmailJS error:', error);
-        alert('There was an issue sending your message. Please try again later.');
+        setButtonStatus('error');
+        // Reset button after 5 seconds
+        setTimeout(() => {
+          setButtonStatus('idle');
+        }, 5000);
       });
+  };
+
+  // Function to get button text based on status
+  const getButtonText = () => {
+    switch (buttonStatus) {
+      case 'sending':
+        return (
+          <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <div className="spinner"></div>
+            Sending...
+          </div>
+        );
+      case 'success':
+        return 'Success!';
+      case 'error':
+        return 'Message Failed to Send';
+      default:
+        return 'Send Message';
+    }
   };
 
   return (
     <div className="App">
+      {/* Fixed Boutique Button */}
+      <a 
+        href="https://colormebeautiful.com/margaretschuld" 
+        className="fixed-boutique-btn"
+        target="_blank" 
+        rel="noopener noreferrer"
+      >
+        🛍️ Check Out Boutique
+      </a>
       <header className="site-header">
         <div className="header-content">
           <span className="brand">Peggy McAuliffe Schuld</span>
@@ -276,7 +334,7 @@ function App() {
         </div>
       </header>
       <main>
-        <section className="hero" style={{ minHeight: '100vh', display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+        <section className="hero hero-container">
           <AnimatedColorWheel />
         </section>
         
@@ -285,8 +343,42 @@ function App() {
             <FadeInSection direction="right">
               <div className="company-section" id="company">
                 <div className="company-inner">
+                <div className="company-text">
                   <h2>Why Color Me Beautiful?</h2>
-                  <div style={{ width: 250, float: 'right', margin: '0 0 1rem 1rem' }}>
+                  <div className="company-content">
+                    <img
+                      src="/funny.jpg"
+                      alt="Color Me Beautiful"
+                      className="circular-image-right"
+                    />
+                    <p className="company-content-text">
+                      Color Me Beautiful pioneered color analysis, helping millions discover their most flattering shades. We go beyond the four seasons, using advanced color science and computer-assisted analysis to create a palette as unique as your fingerprint. Our expert guidance ensures you always look and feel your best.
+                    </p>
+                  </div>
+                 </div>
+                </div>
+              </div>
+            </FadeInSection>
+          </div>
+          <div className="stagger-card right">
+            <FadeInSection direction="left">
+              <div className="about-section" id="about">
+                <div className="about-inner">
+                  <div className="about-text">
+                    <h2>Meet Peg</h2>
+                    <img src="/casualpic.jpg" alt="Meet Peg" className="circular-image" />
+                    <p>I'm Peg, a certified Color Me Beautiful consultant. I use the latest color science to help you find your perfect palette for clothing, accessories, and makeup. My mission is to make color easy, fun, and transformative, so you can dress with confidence every day.</p>
+                  </div>
+                </div>
+              </div>
+            </FadeInSection>
+          </div>
+          <div className="stagger-card left">
+            <FadeInSection direction="right">
+              <div className="how-section" id="how">
+                <div className="how-text">
+                  <h2>How It Works</h2>
+                  <div className="color-wheel-container">
                     <svg width="100%" height="220" viewBox="0 0 220 220">
                       <circle cx="110" cy="110" r="100" fill="#fff" stroke="#e5e5e5" strokeWidth="2" />
                       {[...Array(12)].map((_, i) => (
@@ -300,32 +392,7 @@ function App() {
                       <circle cx="110" cy="110" r="60" fill="#fff" />
                     </svg>
                   </div>
-                  <p>
-                    Color Me Beautiful pioneered color analysis, helping millions discover their most flattering shades. We go beyond the four seasons, using advanced color science and computer-assisted analysis to create a palette as unique as your fingerprint. Our expert guidance ensures you always look and feel your best.
-                  </p>
-                </div>
-              </div>
-            </FadeInSection>
-          </div>
-          <div className="stagger-card right">
-            <FadeInSection direction="left">
-              <div className="about-section" id="about">
-                <div className="about-inner">
-                  <div className="about-text">
-                    <h2>Meet Peg</h2>
-                    <img src="/casualpic.jpg" alt="Peg casual portrait" style={{ width: 250, objectFit: 'cover', borderRadius: '50%', float: 'right', margin: '0 0 1rem 1rem' }} />
-                    <p>I'm Peg, a certified Color Me Beautiful consultant. I use the latest color science to help you find your perfect palette for clothing, accessories, and makeup. My mission is to make color easy, fun, and transformative, so you can dress with confidence every day.</p>
-                  </div>
-                </div>
-              </div>
-            </FadeInSection>
-          </div>
-          <div className="stagger-card left">
-            <FadeInSection direction="right">
-              <div className="how-section" id="how">
-                <div className="how-text">
-                  <h2>How It Works</h2>
-                  <ol style={{ listStyleType: 'none' }}>
+                  <ol className="numbered-list">
                     <li>1. Personal consultation to analyze your unique coloring</li>
                     <li>2. Receive your custom Color Alliance palette—one of 372 possible combinations</li>
                     <li>3. Get expert advice on using your colors for clothes, accessories, and makeup</li>
@@ -339,22 +406,17 @@ function App() {
             <FadeInSection direction="left">
               <div className="boutique-section" id="boutiques">
                 <div className="boutique-inner">
+                <div className="boutique-text">
                   <h2>Explore Makeup & Beauty</h2>
                   <a href="https://colormebeautiful.com/margaretschuld" className="cta-btn" target="_blank" rel="noopener noreferrer">Go To Boutique</a>
                   <p>Discover makeup and beauty products curated just for you! Shop a handpicked selection of cosmetics and essentials designed to harmonize with your unique palette. Find your perfect shades and elevate your look with confidence—directly from my Color Me Beautiful partner site.</p>
                 </div>
+              </div>
               <div className="boutique-visual">
                   <img
-                    src="/pool.jpg"
-                    alt="Peg by the pool"
-                    style={{
-                      width: isMobile ? 320 : 500,
-                      height: 300,
-                      objectFit: 'cover',
-                      borderRadius: 12,
-                      marginBottom: '1rem',
-                      float: 'right',
-                    }}
+                    src="/boutique.jpg"
+                    alt="Go to Boutique!"
+                    className="boutique-image"
                   />
                 </div>
               </div>
@@ -374,18 +436,19 @@ function App() {
               <input type="text" name="user_name" placeholder="Your Name" required />
               <input type="email" name="user_email" placeholder="Your Email" required />
               <textarea name="message" placeholder="How can I help you?" required></textarea>
-              <button type="submit">Send Message</button>
+              <button 
+                type="submit" 
+                disabled={buttonStatus === 'sending'}
+                className={`contact-submit-btn ${buttonStatus}`}
+              >
+                {getButtonText()}
+              </button>
             </form>
           </div>
         </section>
       </main>
       <footer className="site-footer">
         <div className="footer-inner">
-          <img
-            src="/funny.jpg"
-            alt="Color meme"
-            style={{ maxWidth: 150, width: '100%', borderRadius: 8, marginRight: '1rem' }}
-          />
           <div className="footer-text">
             <div className="footer-brand">Color Me Beautiful</div>
             <nav className="footer-nav">

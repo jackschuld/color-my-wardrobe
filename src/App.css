@@ -58,6 +58,32 @@ body, button, .App {
   color: var(--text-color);
 }
 
+/* Fixed Boutique Button */
+.fixed-boutique-btn {
+  position: fixed;
+  bottom: 2rem;
+  left: 2rem;
+  padding: 1rem 2rem;
+  background-color: var(--text-color);
+  color: #fff;
+  border-radius: 50px;
+  text-decoration: none;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.fixed-boutique-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+  color: #fff;
+}
+
 .hero {
   /* min-height: 90vh;
   display: flex;
@@ -100,53 +126,8 @@ body, button, .App {
   color: var(--bg-body);
   box-shadow: 0 4px 16px 0 rgba(0,0,0,0.10);
 }
-.boutique-section,
-.about-section {
-  margin: 0 auto;
-  max-width: 1100px;
-  box-shadow: 0 2px 16px 0 rgba(0,0,0,0.04);
-  padding: 3rem 2rem 3rem 2rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-top: 2.5rem;
-}
-.about-inner {
-  display: flex;
-  align-items: center;
-  gap: 3rem;
-  width: 100%;
-  max-width: 900px;
-  justify-content: center;
-}
-.about-text {
-  flex: 2;
-}
-.about-text h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: var(--text-color);
-}
-.about-text p {
-  font-size: 1.15rem;
-  color: var(--text-color);
-  line-height: 1.7;
-}
-.about-img {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-.portrait-placeholder {
-  width: 120px;
-  height: 120px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #e3e3e3 0%, #f6f6f6 100%);
-  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.06);
-}
 
+/* Common card section styles */
 .company-section,
 .boutique-section,
 .about-section,
@@ -158,14 +139,17 @@ body, button, .App {
   flex-direction: column;
   align-items: center;
   margin: 5vh 7vw;
-  padding: 2.5rem 2rem 2.5rem 2rem;
+  padding: 2.5rem 2rem;
   box-shadow: 0 2px 12px 0 rgba(0,0,0,0.04);
   text-align: center;
 }
-.section-2 {
-  z-index: 100;
-}
-.how-inner {
+
+/* Common inner section styles */
+.about-inner,
+.how-inner,
+.company-inner,
+.boutique-inner,
+.returns-inner {
   display: flex;
   align-items: center;
   gap: 3rem;
@@ -173,32 +157,77 @@ body, button, .App {
   max-width: 900px;
   justify-content: center;
 }
+
+/* Common text container styles */
+.about-text,
+.how-text,
+.company-text,
+.boutique-text,
+.returns-text {
+  flex: 2;
+}
+
+/* Common heading styles for all card sections */
+.company-section h2,
+.boutique-section h2,
+.about-section h2,
+.returns-section h2,
+.how-section h2,
+.contact-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--text-color);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Common text styles for all card sections */
+.company-section p,
+.boutique-section p,
+.about-section p,
+.returns-section p,
+.how-section p,
+.company-section ol,
+.boutique-section ol,
+.about-section ol,
+.returns-section ol,
+.how-section ol {
+  font-size: 1.15rem;
+  color: var(--text-color);
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+}
+
+/* Common list styles */
+.company-section ol,
+.boutique-section ol,
+.about-section ol,
+.returns-section ol,
+.how-section ol {
+  padding-left: 1.2rem;
+  text-align: left;
+}
+
+/* Common visual container styles */
+.about-img,
+.how-visual,
+.company-visual,
+.boutique-visual,
+.returns-visual {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.section-2 {
+  z-index: 100;
+}
 .boutique-visual {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   margin-top: 2rem;
-}
-.how-text {
-  flex: 2;
-}
-.how-text h2 {
-  font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  color: var(--text-color);
-}
-.how-text ol {
-  font-size: 1.1rem;
-  color: var(--text-color);
-  margin-bottom: 1.2rem;
-  padding-left: 1.2rem;
-}
-.how-desc {
-  color: var(--text-color);
-  font-size: 1.05rem;
-  margin-top: 0.5rem;
 }
 .contact-inner {
   max-width: 400px;
@@ -254,7 +283,6 @@ body, button, .App {
 
 .site-footer {
   background: var(--bg-header);
-  border-top: 1px solid #e5e5e5;
   padding: 2rem 0 1rem 0;
   width: 100%;
 }
@@ -369,35 +397,16 @@ body, .App {
 .cta-btn:hover {
   background: var(--text-color);
 }
-
-/* Ensure all common text elements follow theme text color */
-body h1, body h2, body h3, body h4, body h5, body h6,
-body p, body li, body a {
-  color: var(--text-color);
-}
-
-/* Theme text color override for headings */
 .hero h1,
-.about-text h2,
-.how-text h2,
 .contact-section h2 {
   color: var(--text-color);
 }
-
-.about-text p,
-.how-text ol,
-.how-desc {
-  color: var(--text-color);
-}
-
-/* --- Staggered Card Layout --- */
 .stagger-card {
   display: flex;
   justify-content: flex-start;
   margin: 0;
   width: 100%;
   margin-bottom: 0;
-  /* Remove default card margin-top */
 }
 .stagger-card.left {
   justify-content: flex-start;
@@ -408,11 +417,9 @@ body p, body li, body a {
 .stagger-card > .fade-in-section {
   width: 66%;
   min-width: 340px;
-  z-index: 1;            /* ensure card stays above background layer */
-  position: relative;    /* establish containing block for pseudo */
+  z-index: 1;            
+  position: relative;   
 }
-
-/* Decorative background card that sits behind the main card */
 .stagger-card > .fade-in-section::before {
   content: "";
   position: absolute;
@@ -424,7 +431,6 @@ body p, body li, body a {
   width: 75%;
   height: 75%;
 }
-
 /* Why Color Me Beautiful? */
 /* How It Works */
 /* Hassle-Free Returns */
@@ -451,20 +457,19 @@ body p, body li, body a {
 
 /* --- Contact Form Section --- */
 .contact-form-section {
-  width: 100%;
-  height: 100vh;
+  height: 90vh;
   background: var(--bg-body);
-  margin-top: 90vh;
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative;
-  z-index: 5;
+  z-index: 10;
+  margin-top: 30vh;
 }
 .contact-form-section .contact-inner {
   background: #fff;
   box-shadow: 0 2px 16px 0 rgba(0,0,0,0.06);
-  padding: 3rem 2.5rem;
+  padding: 1rem 1.5rem;
   max-width: 500px;
   width: 100%;
   display: flex;
@@ -516,6 +521,55 @@ body p, body li, body a {
   box-shadow: 0 4px 12px 0 rgba(0,0,0,0.1);
 }
 
+/* Button States */
+.contact-submit-btn.sending {
+  background: #6c757d !important;
+  cursor: not-allowed;
+}
+
+.contact-submit-btn.sending:hover {
+  background: #6c757d !important;
+  color: #fff !important;
+  box-shadow: 0 2px 8px 0 rgba(0,0,0,0.06) !important;
+}
+
+.contact-submit-btn.success {
+  background: var(--text-color) !important;
+  color: #fff !important;
+}
+
+.contact-submit-btn.success:hover {
+  background: var(--text-color) !important;
+  color: #fff !important;
+  box-shadow: 0 2px 8px 0 rgba(40, 167, 69, 0.3) !important;
+}
+
+.contact-submit-btn.error {
+  background: #dc3545 !important;
+  color: #fff !important;
+}
+
+.contact-submit-btn.error:hover {
+  background: #dc3545 !important;
+  color: #fff !important;
+  box-shadow: 0 2px 8px 0 rgba(220, 53, 69, 0.3) !important;
+}
+
+/* Spinner Animation */
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid transparent;
+  border-top: 2px solid #ffffff;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
 /* Smooth scroll and offset for fixed header navigation */
 html {
   scroll-behavior: smooth;
@@ -526,18 +580,6 @@ html {
   scroll-margin-top: 80px; /* matches scroll-padding-top */
 }
 
-/* Typography readability adjustments */
-body h1, body h2, body h3, body h4, body h5, body h6 {
-  text-transform: uppercase;
-  font-weight: 700;
-  letter-spacing: 0.05em;
-  font-size: 2rem;
-}
-
-p {
-  font-size: 1.4rem;
-}
-
 /* --- HOW IT WORKS PINNED SECTION --- */
 .how-pinned-section {
   background: var(--bg-background);
@@ -545,27 +587,21 @@ p {
   display: flex;
   align-items: center;
   justify-content: center;
-  top: 0;
-  position: -webkit-sticky;
   position: sticky;
+  position: -webkit-sticky;
+  top: 0;
   height: 100vh;
+  z-index: 5;
 }
 .how-pinned-inner {
   margin-top: 10vh;
-}
-.how-pinned-section .how-text h2 {
-  font-size: 2.2rem;
-  font-weight: 800;
-  margin-bottom: 1rem;
-}
-.how-pinned-section .how-text ol {
-  font-size: 1.15rem;
-  margin-bottom: 1.2rem;
-  padding-left: 1.2rem;
-}
-.how-pinned-section .how-desc {
-  font-size: 1.08rem;
-  margin-top: 0.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 2rem;
 }
 .how-pinned-section .how-visual {
   flex: 1;
@@ -677,11 +713,6 @@ html {
   .fade-in-cards {
     padding: 8vh 0;
   }
-  .fade-in-cards > * {
-    padding: 2rem 1rem 2rem 1rem;
-    max-width: 100vw;
-    box-sizing: border-box;
-  }
   .about-section, .how-section {
     padding: 1.2rem 0.5rem 1.2rem 0.5rem;
   }
@@ -699,6 +730,43 @@ html {
     max-width: 100vw;
     box-sizing: border-box;
   }
+  .company-section,
+  .boutique-section,
+  .about-section,
+  .returns-section,
+  .how-section,
+  .contact-section {
+    padding: 1.2rem 0.5rem;
+    margin: 2.5rem 1rem;
+  }
+  .about-inner,
+  .how-inner,
+  .company-inner,
+  .boutique-inner,
+  .returns-inner {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.2rem;
+    width: 100%;
+    max-width: 100%;
+  }
+  .about-text,
+  .how-text,
+  .company-text,
+  .boutique-text,
+  .returns-text {
+    text-align: center;
+  }
+  section p {
+    font-size: 1rem;
+  }
+  .about-img,
+  .how-visual,
+  .company-visual,
+  .boutique-visual,
+  .returns-visual {
+    margin-bottom: 1rem;
+  }
   .about-inner,
   .how-inner,
   .company-inner,
@@ -709,6 +777,12 @@ html {
     gap: 1.2rem !important;
     width: 100% !important;
     max-width: 100% !important;
+  }
+  .fixed-boutique-btn {
+    bottom: 1rem;
+    left: 1rem;
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
   }
   .about-text,
   .how-text {
@@ -727,34 +801,36 @@ html {
     height: 140px !important;
   }
   .fade-in-cards h2 {
-    font-size: 1.3rem;
+    font-size: 2rem;
   }
   .fade-in-cards p,
   .fade-in-cards ol,
-  .fade-in-cards ul {
+  .fade-in-cards ul,
+  .numbered-list li {
     font-size: 1rem;
   }
   .cta-btn {
     font-size: 1rem;
     padding: 0.7rem 1.5rem;
   }
-  .stagger-card > .fade-in-section {
-    width: 100%;
+  .stagger-card > .fade-in-section,
+  .contact-inner {
+    width: 80% !important;
     min-width: 0;
   }
   .stagger-card {
-    justify-content: center;
+    justify-content: center !important;
   }
   /* Sample Wheel */
   .how-pinned-section .how-visual svg {
     width: 140px !important;
     height: 140px !important;
   }
-  .how-pinned-section .how-text h2 {
+  .how-pinned-section {
     font-size: 1.3rem;
   }
-  .how-pinned-section .how-text ol,
-  .how-pinned-section .how-desc {
+  .how-pinned-section,
+  .how-pinned-section {
     font-size: 1rem;
   }
   /* Contact Form */
@@ -764,12 +840,6 @@ html {
     max-width: 100vw;
     box-sizing: border-box;
     overflow-x: hidden;
-  }
-  .contact-form-section .contact-inner {
-    padding: 1.2rem 0.5rem;
-    width: 100vw;
-    max-width: 100vw;
-    box-sizing: border-box;
   }
   .contact-form-section .contact-form input,
   .contact-form-section .contact-form textarea {
@@ -786,20 +856,15 @@ html {
     align-items: center;
     justify-content: center;
   }
-  /* Ensure images within card sections scale and stay centered on phones */
   .fade-in-cards img {
     width: 85% !important; 
     max-width: 320px;      
     height: auto !important;
-    display: block;
     margin: 0 auto 1rem;   
     float: none !important;
   }
 }
 @media (min-width: 900px) {
-  .footer-text {
-    transform: translateX(-75px);
-  }
   .site-header .hamburger {
     display: none;
   }
@@ -848,4 +913,50 @@ html {
   .colorwheel-cta-btn-container {
     top: 50%;
   }
+}
+
+/* Common image styles */
+.circular-image {
+  width: 250px;
+  object-fit: cover;
+  border-radius: 50%;
+  float: right;
+  margin: 0 0 1rem 1rem;
+}
+
+.circular-image-right {
+  width: 250px;
+  float: right;
+  margin: 0 0 1rem 2rem;
+  border-radius: 90px;
+  shape-outside: circle(50%);
+}
+
+.boutique-image {
+  width: 500px;
+  object-fit: cover;
+  border-radius: 12px;
+  margin-bottom: 1rem;
+  float: right;
+}
+
+/* Hero section styles */
+.hero-container {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+/* Color wheel container */
+.color-wheel-container {
+  width: 250px;
+  float: right;
+  margin: 0 0 1rem 1rem;
+}
+
+/* List styles */
+.numbered-list {
+  list-style-type: none;
 }
