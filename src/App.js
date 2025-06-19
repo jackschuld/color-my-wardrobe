@@ -189,7 +189,7 @@ function ThemeDropdown({ themeName, setTheme }) {
       </motion.button>
       {open && (
         <div style={{
-          position: 'absolute', top: '110%', left: '4px', zIndex: 100,
+          position: 'absolute', top: '110%', left: '4px', zIndex: 1100,
           background: 'var(--header-text)',
           border: '1.5px solid #ccc',
           borderRadius: 12,
