@@ -432,18 +432,22 @@ function App() {
           <div className="contact-inner">
             <h2>Contact</h2>
             <p>Ready to discover your best colors?<br /> Get in touch for a personal consultation!</p>
-            <form className="contact-form" ref={formRef} onSubmit={sendEmail}>
-              <input type="text" name="user_name" placeholder="Your Name" required />
-              <input type="email" name="user_email" placeholder="Your Email" required />
-              <textarea name="message" placeholder="How can I help you?" required></textarea>
-              <button 
-                type="submit" 
-                disabled={buttonStatus === 'sending'}
-                className={`contact-submit-btn ${buttonStatus}`}
-              >
-                {getButtonText()}
-              </button>
-            </form>
+            <div className="contact-info">
+              <div className="contact-item">
+                <strong>Email:</strong>
+                <a href="mailto:pegomh@comcast.net">pegomh@comcast.net</a>
+              </div>
+              <div className="contact-item">
+                <strong>Phone:</strong>
+                <a href="tel:847-420-3388">847-420-3388</a>
+              </div>
+              <div className="contact-item">
+                <strong>Website:</strong>
+                <a href="https://colormebeautiful.com/margaretschuld" target="_blank" rel="noopener noreferrer">
+                  colormebeautiful.com/margaretschuld
+                </a>
+              </div>
+            </div>
           </div>
         </section>
       </main>
