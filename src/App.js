@@ -414,7 +414,7 @@ function App() {
               </div>
               <div className="boutique-visual">
                   <img
-                    src="/boutique.jpg"
+                    src="/lipstick.jpg"
                     alt="Go to Boutique!"
                     className="boutique-image"
                   />
