@@ -977,7 +977,7 @@ html {
   width: 250px;
   float: right;
   margin: 0 0 1rem 2rem;
-  border-radius: 90px;
+  border-radius: 15%;
   shape-outside: circle(50%);
 }
 

@@ -399,7 +399,7 @@ function App() {
                   </ol>
                   <p className="how-desc">Your palette is your personalized shopping guide, making style choices simple and frustration-free.</p>
                 </div>
-              </div>
+              </div>  
             </FadeInSection>
           </div>
           <div className="stagger-card right">
